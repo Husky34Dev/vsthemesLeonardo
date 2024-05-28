@@ -1,0 +1,405 @@
+
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--editor-background);
+  color: var(--editor-foreground);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.color-settings {
+  width: 25%;
+  background-color: gray;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.color-settings .sidebar-section {
+  margin-bottom: 20px;
+}
+
+.color-settings .sidebar-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-settings .sidebar-title {
+  margin-left: 10px;
+  font-size: 18px;
+  color: var(--sidebar-foreground);
+}
+
+.color-settings .color-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-settings .color-field h4 {
+  margin: 0;
+  font-size: 14px;
+  flex: 1;
+}
+
+.color-settings .color-field input {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--editor-background);
+  border-left: 1px solid #333;
+  width: 75%;
+  height: 80%;
+  box-sizing: border-box; /* Added to ensure correct box-sizing */
+  position: relative; /* Added to allow absolute positioning of the status bar */
+  margin: 5%;
+  border-radius: 15px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--top-bar-background);
+  border-bottom: 2px solid var(--title-bar-border);
+  padding: 5px 10px;
+  color: var(--top-bar-text);
+  font-size: 14px;
+  border-top-right-radius: 9px;
+  border-top-left-radius: 9px;
+}
+
+.vscode-logo img {
+  height: 16px;
+  width: auto;
+}
+
+.menubar {
+  display: flex;
+  align-items: center;
+}
+
+.menubar .item {
+  margin-right: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menubar .item:hover {
+  color: var(--sidebar-foreground);
+}
+
+.center-text {
+  flex: 1;
+  text-align: center;
+}
+
+.editor-container {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 40px); /* Adjusted height to leave space for the status bar */
+  overflow: hidden; /* Added to prevent content overflow */
+}
+
+.vscode-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sidebar-background);
+  padding-top: 10px;
+  width: 50px;
+  height: 98%;
+}
+
+.sidebar-icon {
+  color: var(--sidebar-foreground);
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar-icon:hover {
+  color: var(--sidebar-foreground);
+}
+
+.sidebar {
+  background-color: var(--sidebar-background);
+  color: var(--sidebar-foreground);
+  border-right: 3px solid var(--side-bar-section-border);
+  width: 15%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.selected-file {
+  text-justify: center;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-rendering: auto;
+}
+
+.explorer {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.explorer div {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.explorer-title {
+  color: var(--side-bar-section-header-foreground);
+  background-color: var(--side-bar-section-header-background);
+  border: 0.5px solid;
+  border-color: var(--side-bar-section-header-border) ;
+  padding: 4px;
+}
+.file-tree {
+  list-style-type: none;
+  padding-left: 10px;
+}
+.file-tree ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.file-tree li {
+  margin-bottom: 5px;
+}
+.file-tree li:hover {
+  background-color: var(--list-hover-background);
+  color: var(--list-hover-foreground);
+}
+
+.file-tree .folder > .codicon {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.file-tree .active {
+  background-color: var(--list-active-selection-background);
+  color: var(--list-active-selection-foreground);
+}
+.main-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--editor-background);
+  overflow: hidden; /* Added to prevent content overflow */
+}
+.editor-tabs .tab:hover {
+  background-color: var(--tab-hover-background) !important;
+  color: var(--tab-hover-foreground) !important;
+}
+
+
+.editor-tabs .tab:hover {
+  background-color: var(--tab-hover-background);
+  color: var(--tab-hover-foreground);
+}
+.editor-tabs {
+  background-color: var(--tabs-container-background);
+  display: flex;
+  flex-direction: row;
+}
+
+.editor-tabs .tab {
+  padding: 5px 10px;
+  cursor: pointer;
+  color: var(--tab-inactive-foreground);
+}
+
+.editor-tabs .tab.active {
+  background-color: var(--tab-active-background);
+  color: var(--tab-active-foreground);
+}
+
+
+
+.editor-tabs .tab.inactive {
+  background-color: var(--tab-inactive-background);
+  color: var(--tab-inactive-foreground);
+}
+
+.editor-content {
+  display: flex;
+  position: relative;
+  background-color: var(--editor-background);
+  color: var(--editor-foreground);
+  overflow: auto; /* Added to allow scroll in the editor content */
+}
+
+.line-numbers {
+  padding-right: 10px;
+  text-align: right;
+  user-select: none;
+  color: var(--editor-line-number-foreground);
+  background-color: var(--editor-background);
+  border-right: 1px solid #ddd;
+}
+
+.line-number {
+  padding-right: 10px;
+  color: var(--editor-line-number-foreground);
+}
+
+pre {
+  margin: 0;
+  padding-left: 10px; /* To provide space for line numbers */
+  background-color: var(--editor-background);
+  color: var(--editor-foreground);
+  overflow: auto;
+}
+
+.status-bar {
+  background-color: var(--status-bar-background);
+  color: var(--status-bar-foreground);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  height: 3.5%; /* Height of the status bar */
+  box-sizing: border-box;
+  position: absolute; /* Absolute positioning within editor-wrapper */
+  bottom: 0; /* Anchored to the bottom of the editor-wrapper */
+  width: 100%; /* Occupies full width of the editor-wrapper */
+  border-end-end-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+.status-item:hover {
+  background-color: var(--status-bar-background-hover);
+  
+}
+
+.status-item {
+  margin-right: 20px;
+}
+
+.right {
+  margin-left: auto; /* Pushes this container to the right */
+  display: flex;
+  gap: 20px; /* Spacing between right-aligned items */
+}
+
+.status-bar .status-item {
+  margin-right: 20px;
+}
+
+.status-bar .git-branch {
+  color: var(--status-bar-foreground);
+}
+
+.status-bar .warning {
+  color: var(--status-bar-foreground);
+}
+
+.status-bar .error {
+  color: var(--status-bar-foreground);
+}
+.remote-item{
+  color: var(--status-bar-remote-foreground);
+  background-color: green;
+  margin-right: 1%;
+  padding: 0.3%;
+  border-bottom-left-radius:15px ;
+  height: 20px;
+  align-content: center;
+}
+
+.comment {
+  color: var(--comments);
+}
+
+.const {
+  color: var(--classes-constants);
+}
+
+.string {
+  color: var(--string);
+}
+
+.keyword {
+  color: var(--keyword);
+}
+
+.variable {
+  color: var(--variables-properties);
+}
+
+.number {
+  color: var(--numbers);
+}
+
+.propertie {
+  color: var(--variables-properties);
+}
+
+.function-name {
+  color: var(--function-methods);
+}
+
+.method {
+  color: var(--function-methods);
+}
+
+.class-name {
+  color: var(--classes-constants);
+}
+
+.operators-special {
+  color: var(--operators-special);
+}
+
+.template-string {
+  color: var(--editor-foreground);
+}
+
+/* Styles for mobile devices or smaller windows */
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .color-settings {
+    width: 100%;
+    border-bottom: 1px solid #252526;
+  }
+
+  .editor-wrapper {
+    width: 100%;
+    height: 70%;
+  }
+
+  .editor-container {
+    width: 100%;
+    height: 70%;
+  }
+}

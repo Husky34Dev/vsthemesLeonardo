@@ -1,0 +1,66 @@
+{
+    "name": "Custom Theme",
+    "type": "dark",
+    "semanticHighlighting": true,
+    "semanticTokenColors": {
+        "enumMember": {
+            "foreground": "#56b6c2"
+        },
+        "variable.constant": {
+            "foreground": "#d19a66"
+        },
+        "variable.defaultLibrary": {
+            "foreground": "#e5c07b"
+        }
+    },
+    "tokenColors": [
+        {
+            "name": "keyword",
+            "scope": "keyword",
+            "settings": {
+                "foreground": "#c500ff"
+            }
+        },
+        {
+            "name": "constant.numeric",
+            "scope": "constant.numeric",
+            "settings": {
+                "foreground": "#ff7c00"
+            }
+        },
+        {
+            "name": "comment",
+            "scope": "comment",
+            "settings": {
+                "foreground": "#0055ff",
+                "fontStyle": "italic"
+            }
+        }
+    ],
+    "colors": {
+        "editor.background": "#2b2f2b",
+        "editor.foreground": "#d4d4d4",
+        "editorLineNumber.foreground": "#237893",
+        "tab.activeBackground": "#1e1e1e",
+        "tab.inactiveBackground": "#2d2d2d",
+        "tab.border": "#444444",
+        "tab.activeForeground": "#ffffff",
+        "tab.inactiveForeground": "#aaaaaa",
+        "tab.hoverBackground": "#3d3d3d",
+        "tab.hoverForeground": "#ffffff",
+        "sideBar.background": "#f3f3f3",
+        "sideBar.foreground": "#616161",
+        "sideBarSectionHeader.background": "#00000000",
+        "sideBarSectionHeader.foreground": "#616161",
+        "statusBar.background": "#007acc",
+        "statusBar.foreground": "#ffffff",
+        "titleBar.activeBackground": "#2c2c2c",
+        "titleBar.activeForeground": "#ffffff",
+        "titleBar.border": "#00000000",
+        "activityBar.background": "#2c2c2c",
+        "activityBar.foreground": "#ffffff",
+        "activityBar.inactiveForeground": "#ffffff66",
+        "activityBarBadge.foreground": "#ffffff",
+        "activityBarBadge.background": "#007acc"
+    }
+}

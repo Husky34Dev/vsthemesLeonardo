@@ -1,0 +1,29 @@
+{
+  "name": "ngx-color-picker",
+  "description": "Color picker widget for Angular",
+  "bugs": "https://github.com/zefoy/ngx-color-picker/issues",
+  "version": "16.0.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=9.0.0",
+    "@angular/core": ">=9.0.0",
+    "@angular/forms": ">=9.0.0"
+  },
+  "module": "fesm2022/ngx-color-picker.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/ngx-color-picker.mjs",
+      "esm": "./esm2022/ngx-color-picker.mjs",
+      "default": "./fesm2022/ngx-color-picker.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

@@ -1,0 +1,315 @@
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@vscode/codicons/dist/codicon.css"
+/>
+<div class="main-container">
+  <div class="color-settings">
+    <div class="sidebar-section">
+      <div class="sidebar-section-header">
+        <i class="codicon codicon-color-mode"></i>
+        <h2 class="sidebar-title">Configuración de Colores</h2>
+      </div>
+
+      <!-- Editor Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('editor')">
+          Editor ({{ editorColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('editor')" class="color-fields">
+          <div
+            *ngFor="let color of editorColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Syntax Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('syntax')">
+          Syntax ({{ syntaxColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('syntax')" class="color-fields">
+          <div
+            *ngFor="let color of syntaxColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('sidebar')">
+          Sidebar ({{ sidebarColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('sidebar')" class="color-fields">
+          <div
+            *ngFor="let color of sidebarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Bar Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('statusBar')">
+          Status Bar ({{ statusBarColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('statusBar')" class="color-fields">
+          <div
+            *ngFor="let color of statusBarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Bar Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('topBar')">
+          Top Bar ({{ topBarColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('topBar')" class="color-fields">
+          <div
+            *ngFor="let color of topBarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Colors -->
+      <div class="color-section">
+        <div class="color-section-title" (click)="toggleSection('tabs')">
+          Tabs ({{ tabColors.length }})
+        </div>
+        <div *ngIf="isSectionExpanded('tabs')" class="color-fields">
+          <div
+            *ngFor="let color of tabColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
+            <h4>{{ color.label }}</h4>
+            <input
+              [(colorPicker)]="color.value"
+              [style.background]="color.value"
+              [value]="color.value"
+              (colorPickerChange)="updateTheme()"
+            />
+          </div>
+        </div>
+      </div>
+      <button (click)="sendColorsToServer()">Save Theme</button>
+
+     
+    </div>
+  </div>
+
+  <div class="editor-wrapper">
+    <div class="top-bar">
+      <div class="vscode-logo">
+        <img src="assets/vscode-logo.png" alt="VS Code Logo" />
+      </div>
+      <div class="menubar">
+        <div class="item">File</div>
+        <div class="item">Edit</div>ö
+        <div class="item">Selection</div>
+        <div class="item">View</div>
+        <div class="item">Go</div>
+        <div class="item">Run</div>
+        <div class="item">Terminal</div>
+        <div class="item">Help</div>
+      </div>
+      <div class="center-text">
+        main.js - AwesomeProject - Visual Studio Code
+      </div>
+    </div>
+
+    <div class="editor-container">
+      <div class="sidebar-icons">
+        <div class="sidebar-icon"><i class="codicon codicon-files"></i></div>
+        <div class="sidebar-icon"><i class="codicon codicon-search"></i></div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-source-control"></i>
+        </div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-debug-alt-small"></i>
+        </div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-extensions"></i>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="explorer">
+          <div class="explorer-title">Explorer</div>
+          <ul class="file-tree">
+            <li class="folder">
+              <div class="codicon codicon-chevron-down"></div>
+              AWESOMEPROJECT
+              <ul>
+                <li class="folder">
+                  <div class="codicon codicon-chevron-right"></div>
+                  node_modules
+                </li>
+                <li class="folder">
+                  <div class="codicon codicon-chevron-right"></div>
+                  public
+                </li>
+                <li class="folder-expanded">
+                  <div class="codicon codicon-chevron-down"></div>
+                  src
+                  <ul>
+                    <li class="folder">
+                      <div class="codicon codicon-chevron-down"></div>
+                      assets
+                      <ul>
+                        <li>
+                          <i class="codicon codicon-file-code"></i> styles.css
+                        </li>
+                        <li>
+                          <i class="codicon codicon-file-code"></i> logo.svg
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="folder">
+                      <div class="codicon codicon-chevron-right"></div>
+                      components
+                    </li>
+                    <li><i class="codicon codicon-file-code"></i> App.vue</li>
+                    <li><i class="codicon codicon-file-code"></i> main.js</li>
+                  </ul>
+                </li>
+                <li><i class="codicon codicon-file-code"></i> .gitignore</li>
+                <li>
+                  <i class="codicon codicon-file-code"></i> babel.config.js
+                </li>
+                <li>
+                  <i class="codicon codicon-file-code"></i> package-lock.json
+                </li>
+                <li><i class="codicon codicon-file-code"></i> package.json</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main-area">
+        <div class="editor-tabs">
+          <div class="tab active">main.js</div>
+          <div class="tab inactive">package.json</div>
+          <div class="tab inactive">App.vue</div>
+        </div>
+        <div class="selected-file">
+          
+          <div class="editor-content">
+            <div class="line-numbers" #lineNumbers>
+              <!-- Aquí se generan los números de línea -->
+            </div>
+            <pre #codeElement>
+              <code>// <span class="comment">Example borrowed from: https://github.com/PacktPublishing/JavaScript-by-Example/blob/master/Chapter07/CompletedCode/src/services/api/apiCall.js</span>
+<span class="keyword">const</span> <span class="const">timeoutDuration</span> <span class="operators-special">=</span> <span class="number">12000</span><span class="foreground">;</span>
+
+<span class="keyword">const</span> <span class="const">NUMBER</span> <span class="operators-special">=</span> <span class="number">81274509182375409237</span><span class="foreground">;</span>
+
+<span class="keyword">export</span> <span class="keyword">function</span> <span class="function-name">apiCall</span><span class="foreground">(</span><span class="variable">route</span><span class="foreground">,</span> <span class="variable">body</span> <span class="opeators-special">=</span> <span class="default-value">&#123;&#125;</span>, <span class="variable">method</span>=<span class="string">'post'</span>) <span class="foreground">&#123;</span>
+    <span class="keyword">const</span> <span class="const">request</span><span class="operators-special"> =</span><span class="keyword">new</span> <span class="const">Promise</span><span class="foreground">((</span><span class="method">resolve</span>, <span class="method">reject</span> <span class="foreground">  )</span> => <span class="foreground"> &#123;</span>
+        <span class="keyword">const</span> <span class="const">headers</span> <span class="operators-special">=</span> <span class="keyword">new</span> <span class="const">Headers</span><span class="foreground">(&#123;</span>
+            <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+        <span class="foreground">&#125;);</span>
+
+        <span class="keyword">const</span> <span class="const">requestDetails</span> <span class="operators-special">=</span> <span class="foreground">&#123;</span>
+            <span class="variable">method</span>,
+            <span class="variable">mode</span>: <span class="string">'cors'</span>,
+            <span class="variable">headers</span>,
+            <span class="foreground"> &#125;;</span>
+
+        <span class="keyword">if</span><span class="foreground">(</span><span class="variable">method</span> <span class="operators-special">!==</span> <span class="string">'GET'</span>) <span class="const">requestDetails</span><span class="propertie">.body</span> = <span class="const">JSON</span><span class="method">.stringify</span><span class="foreground">(</span><span class="variable">body</span><span class="foreground">);</span>
+
+        <span class="keyword">function</span> <span class="function-name">handleErrors</span><span class="foreground">(</span><span class="variable">response</span><span class="foreground">) &#123;</span>
+            <span class="keyword">if</span>(<span class="variable">response.ok</span>) &#123;
+                <span class="keyword">return</span> <span class="variable">response</span>.<span class="function-name">json</span><span class="foreground">();</span>
+            <span class="foreground">&#125;</span> <span class="keyword">else</span> <span class="foreground">&#123;</span>
+                <span class="keyword">throw</span> <span class="class-name">Error</span><span class="foreground">(</span><span class="variable">response.statusText</span><span class="foreground">);</span>
+            <span class="foreground">&#125;</span>
+        <span class="foreground">&#125;</span>
+
+        <span class="keyword">const</span> <span class="const">serverURL</span> <span class="operators-special">=</span> <span class="const">process.env.REACT_APP_SERVER_URL</span> <span class="operators-special">||</span> <span class="string">'http://localhost:3000'</span><span class="foreground">;</span>
+
+        <span class="operators-special">fetch</span><span class="foreground">(</span><span class="template-string"><span class="keyword">&#96;&#36;&#123;</span><span class="const">serverURL</span><span class="keyword">&#125;&#47;&#36;&#123;</span><span class="variable">route</span><span class="keyword">&#125;&#96;</span></span><span class="foreground">,</span> <span class="const">requestDetails</span><span class="foreground">)</span>
+        <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="function-name">handleErrors</span>)
+        <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="variable">data</span><span class="keyword"> =></span> <span class="function-name">resolve</span><span class="foreground">(</span><span class="variable">data</span><span class="foreground">))</span>
+        <span class="foreground">.</span><span class="function-name">catch</span><span class="foreground">(</span><span class="variable">err</span><span class="keyword"> =></span> <span class="function-name">reject</span><span class="foreground">(</span><span class="variable">err</span><span class="foreground">));</span>
+    <span class="foreground">&#125;);</span>
+
+    <span class="keyword">return</span> <span class="variable">request</span><span class="foreground">;</span>
+    <span class="foreground">&#125;</span>
+</code>
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <div class="remote-item">
+          <i class="codicon codicon-remote"></i>
+        </div>
+        <div class="status-item git-branch">
+          <i class="codicon codicon-source-control"></i> master*
+        </div>
+        <div class="status-item"><i class="codicon codicon-warning"></i> 0</div>
+        <div class="status-item error">
+          <i class="codicon codicon-error"></i> 1
+        </div>
+        <div class="right">
+          <div class="status-item">Ln 9, Col 21</div>
+          <div class="status-item">Spaces: 4</div>
+          <div class="status-item">UTF-8</div>
+          <div class="status-item">LF</div>
+          <div class="status-item">JavaScript</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

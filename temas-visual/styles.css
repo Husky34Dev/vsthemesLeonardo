@@ -1,0 +1,100 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Consolas', 'Courier New', monospace;
+    background: #1e1e1e;
+    color: #cccccc;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.title-bar {
+    background: #333333;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+}
+
+.logo {
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    height: calc(100% - 40px);
+}
+
+.sidebar {
+    width: 200px;
+    background: #252526;
+    color: #ffffff;
+    overflow: auto;
+}
+
+.file-explorer {
+    padding: 10px;
+}
+
+.folder-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.files li {
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.files li:hover {
+    background: #555555;
+}
+
+.code-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs {
+    background: #2c2c2c;
+    padding: 5px;
+}
+
+.tab {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    border-bottom-color: #007acc;
+}
+
+.code-input {
+    flex: 1;
+    background: #1e1e1e;
+    border: none;
+    color: #cccccc;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 16px;
+}
+
+.status-bar {
+    background: #007acc;
+    color: #ffffff;
+    padding: 5px 10px;
+    text-align: left;
+}
