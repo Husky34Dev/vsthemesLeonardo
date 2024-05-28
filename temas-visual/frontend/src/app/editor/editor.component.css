@@ -1,5 +1,3 @@
-
-
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -16,48 +14,105 @@ body {
   display: flex;
   height: 100vh;
   width: 100vw;
+  /*
+  background: url('background-image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  */
 }
 
 .color-settings {
   width: 25%;
-  background-color: gray;
-  padding: 10px;
+  background-color: #1e272e; /* Fondo más oscuro para el menú */
+  padding: 20px;
   overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Sombra para separación */
 }
 
 .color-settings .sidebar-section {
   margin-bottom: 20px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
 }
 
 .color-settings .sidebar-section-header {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
+  color: #ffffff; /* Texto blanco */
 }
 
 .color-settings .sidebar-title {
   margin-left: 10px;
   font-size: 18px;
-  color: var(--sidebar-foreground);
+  font-weight: bold;
+}
+
+.color-settings .color-section-title {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff; /* Texto blanco */
+  cursor: pointer;
+  background-color: #2f3640;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.color-settings .color-section-title:hover {
+  background-color: #3d3d3d;
+}
+
+.color-fields {
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.color-fields.expanded {
+  display: block;
 }
 
 .color-settings .color-field {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .color-settings .color-field h4 {
   margin: 0;
-  font-size: 14px;
+  font-size: 14px;  /* Ajuste del tamaño del texto */
   flex: 1;
+  color: #ffffff; /* Texto blanco */
 }
 
 .color-settings .color-field input {
-  width: 40px;
-  height: 40px;
-  border: none;
+  width: 80px;  /* Ajuste del tamaño del input */
+  height: 30px;  /* Ajuste de la altura del input */
+  border: 2px solid #7f8c8d;
   cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+button {
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
 }
 
 .editor-wrapper {
@@ -66,12 +121,10 @@ body {
   flex: 1;
   background-color: var(--editor-background);
   border-left: 1px solid #333;
-  width: 75%;
-  height: 80%;
-  box-sizing: border-box; /* Added to ensure correct box-sizing */
-  position: relative; /* Added to allow absolute positioning of the status bar */
-  margin: 5%;
-  border-radius: 15px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+  overflow: hidden;
 }
 
 .top-bar {
@@ -79,16 +132,15 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: var(--top-bar-background);
-  border-bottom: 2px solid var(--title-bar-border);
-  padding: 5px 10px;
+  padding: 15px 20px;
   color: var(--top-bar-text);
-  font-size: 14px;
-  border-top-right-radius: 9px;
-  border-top-left-radius: 9px;
+  font-size: 16px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .vscode-logo img {
-  height: 16px;
+  height: 24px;
   width: auto;
 }
 
@@ -98,9 +150,11 @@ body {
 }
 
 .menubar .item {
-  margin-right: 15px;
+  margin-right: 20px;
   cursor: pointer;
   user-select: none;
+  color: var(--top-bar-text);
+  transition: color 0.3s ease;
 }
 
 .menubar .item:hover {
@@ -110,13 +164,15 @@ body {
 .center-text {
   flex: 1;
   text-align: center;
+  color: var(--top-bar-text);
 }
 
 .editor-container {
   display: flex;
   flex: 1;
-  height: calc(100% - 40px); /* Adjusted height to leave space for the status bar */
-  overflow: hidden; /* Added to prevent content overflow */
+  height: calc(100% - 60px); /* Adjusted height to leave space for the status bar */
+  overflow: hidden;
+  background-color: var(--editor-background);
 }
 
 .vscode-editor {
@@ -129,33 +185,36 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--sidebar-background);
-  padding-top: 10px;
-  width: 50px;
-  height: 98%;
+  background-color: #34495e; /* Fondo más oscuro */
+  padding-top: 20px;
+  width: 60px;
+  height: 100%;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-icon {
   color: var(--sidebar-foreground);
   font-size: 24px;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .sidebar-icon:hover {
-  color: var(--sidebar-foreground);
+  color: #f39c12; /* Cambiar color al pasar el cursor */
 }
 
 .sidebar {
   background-color: var(--sidebar-background);
   color: var(--sidebar-foreground);
-  border-right: 3px solid var(--side-bar-section-border);
-  width: 15%;
-  padding: 10px;
+  border-right: 1px solid #333;
+  width: 25%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .selected-file {
@@ -175,26 +234,32 @@ body {
 .explorer div {
   font-weight: bold;
   margin-bottom: 10px;
+  color: var(--side-bar-section-header-foreground);
 }
+
 .explorer-title {
   color: var(--side-bar-section-header-foreground);
   background-color: var(--side-bar-section-header-background);
-  border: 0.5px solid;
-  border-color: var(--side-bar-section-header-border) ;
+  border: 0.5px solid var(--side-bar-section-header-border);
   padding: 4px;
+  border-radius: 5px;
 }
+
 .file-tree {
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
 }
+
 .file-tree ul {
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .file-tree li {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .file-tree li:hover {
   background-color: var(--list-hover-background);
   color: var(--list-hover-foreground);
@@ -209,45 +274,46 @@ body {
   background-color: var(--list-active-selection-background);
   color: var(--list-active-selection-foreground);
 }
+
 .main-area {
   display: flex;
   flex-direction: column;
   flex: 1;
   background-color: var(--editor-background);
-  overflow: hidden; /* Added to prevent content overflow */
-}
-.editor-tabs .tab:hover {
-  background-color: var(--tab-hover-background) !important;
-  color: var(--tab-hover-foreground) !important;
+  overflow: hidden;
 }
 
-
-.editor-tabs .tab:hover {
-  background-color: var(--tab-hover-background);
-  color: var(--tab-hover-foreground);
-}
 .editor-tabs {
   background-color: var(--tabs-container-background);
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid #444;
 }
 
 .editor-tabs .tab {
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
   color: var(--tab-inactive-foreground);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .editor-tabs .tab.active {
   background-color: var(--tab-active-background);
   color: var(--tab-active-foreground);
+  border-bottom: none;
 }
-
-
 
 .editor-tabs .tab.inactive {
   background-color: var(--tab-inactive-background);
   color: var(--tab-inactive-foreground);
+  border-bottom: 1px solid #444;
+}
+
+.editor-tabs .tab:hover {
+  background-color: var(--tab-hover-background);
+  color: var(--tab-hover-foreground);
 }
 
 .editor-content {
@@ -255,11 +321,12 @@ body {
   position: relative;
   background-color: var(--editor-background);
   color: var(--editor-foreground);
-  overflow: auto; /* Added to allow scroll in the editor content */
+  overflow: auto;
+  padding: 20px;
 }
 
 .line-numbers {
-  padding-right: 10px;
+  padding-right: 20px;
   text-align: right;
   user-select: none;
   color: var(--editor-line-number-foreground);
@@ -274,7 +341,7 @@ body {
 
 pre {
   margin: 0;
-  padding-left: 10px; /* To provide space for line numbers */
+  padding-left: 20px;
   background-color: var(--editor-background);
   color: var(--editor-foreground);
   overflow: auto;
@@ -286,17 +353,17 @@ pre {
   display: flex;
   align-items: center;
   font-size: 12px;
-  height: 3.5%; /* Height of the status bar */
+  height: 30px;
   box-sizing: border-box;
-  position: absolute; /* Absolute positioning within editor-wrapper */
-  bottom: 0; /* Anchored to the bottom of the editor-wrapper */
-  width: 100%; /* Occupies full width of the editor-wrapper */
-  border-end-end-radius: 9px;
-  border-bottom-left-radius: 9px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
+
 .status-item:hover {
   background-color: var(--status-bar-background-hover);
-  
 }
 
 .status-item {
@@ -304,9 +371,9 @@ pre {
 }
 
 .right {
-  margin-left: auto; /* Pushes this container to the right */
+  margin-left: auto;
   display: flex;
-  gap: 20px; /* Spacing between right-aligned items */
+  gap: 20px;
 }
 
 .status-bar .status-item {
@@ -324,12 +391,13 @@ pre {
 .status-bar .error {
   color: var(--status-bar-foreground);
 }
-.remote-item{
+
+.remote-item {
   color: var(--status-bar-remote-foreground);
   background-color: green;
   margin-right: 1%;
   padding: 0.3%;
-  border-bottom-left-radius:15px ;
+  border-bottom-left-radius: 15px;
   height: 20px;
   align-content: center;
 }

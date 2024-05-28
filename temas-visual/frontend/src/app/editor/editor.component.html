@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@vscode/codicons/dist/codicon.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@vscode/codicons/dist/codicon.css" />
 <div class="main-container">
   <div class="color-settings">
     <div class="sidebar-section">
@@ -15,13 +12,9 @@
         <div class="color-section-title" (click)="toggleSection('editor')">
           Editor ({{ editorColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('editor')" class="color-fields">
-          <div
-            *ngFor="let color of editorColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('editor')" class="color-fields expanded">
+          <div *ngFor="let color of editorColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -37,13 +30,9 @@
         <div class="color-section-title" (click)="toggleSection('syntax')">
           Syntax ({{ syntaxColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('syntax')" class="color-fields">
-          <div
-            *ngFor="let color of syntaxColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('syntax')" class="color-fields expanded">
+          <div *ngFor="let color of syntaxColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -59,13 +48,9 @@
         <div class="color-section-title" (click)="toggleSection('sidebar')">
           Sidebar ({{ sidebarColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('sidebar')" class="color-fields">
-          <div
-            *ngFor="let color of sidebarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('sidebar')" class="color-fields expanded">
+          <div *ngFor="let color of sidebarColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -81,13 +66,9 @@
         <div class="color-section-title" (click)="toggleSection('statusBar')">
           Status Bar ({{ statusBarColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('statusBar')" class="color-fields">
-          <div
-            *ngFor="let color of statusBarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('statusBar')" class="color-fields expanded">
+          <div *ngFor="let color of statusBarColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -103,13 +84,9 @@
         <div class="color-section-title" (click)="toggleSection('topBar')">
           Top Bar ({{ topBarColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('topBar')" class="color-fields">
-          <div
-            *ngFor="let color of topBarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('topBar')" class="color-fields expanded">
+          <div *ngFor="let color of topBarColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -125,13 +102,9 @@
         <div class="color-section-title" (click)="toggleSection('tabs')">
           Tabs ({{ tabColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('tabs')" class="color-fields">
-          <div
-            *ngFor="let color of tabColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.label }}</h4>
+        <div *ngIf="isSectionExpanded('tabs')" class="color-fields expanded">
+          <div *ngFor="let color of tabColors" class="color-field" (click)="$event.stopPropagation()">
+            <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
               [style.background]="color.value"
@@ -142,8 +115,7 @@
         </div>
       </div>
       <button (click)="sendColorsToServer()">Save Theme</button>
-
-     
+      <button (click)="downloadTheme()">Download Theme</button>
     </div>
   </div>
 
@@ -154,7 +126,7 @@
       </div>
       <div class="menubar">
         <div class="item">File</div>
-        <div class="item">Edit</div>ö
+        <div class="item">Edit</div>
         <div class="item">Selection</div>
         <div class="item">View</div>
         <div class="item">Go</div>
@@ -162,24 +134,16 @@
         <div class="item">Terminal</div>
         <div class="item">Help</div>
       </div>
-      <div class="center-text">
-        main.js - AwesomeProject - Visual Studio Code
-      </div>
+      <div class="center-text">main.js - AwesomeProject - Visual Studio Code</div>
     </div>
 
     <div class="editor-container">
       <div class="sidebar-icons">
         <div class="sidebar-icon"><i class="codicon codicon-files"></i></div>
         <div class="sidebar-icon"><i class="codicon codicon-search"></i></div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-source-control"></i>
-        </div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-debug-alt-small"></i>
-        </div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-extensions"></i>
-        </div>
+        <div class="sidebar-icon"><i class="codicon codicon-source-control"></i></div>
+        <div class="sidebar-icon"><i class="codicon codicon-debug-alt-small"></i></div>
+        <div class="sidebar-icon"><i class="codicon codicon-extensions"></i></div>
       </div>
 
       <div class="sidebar">
@@ -206,12 +170,8 @@
                       <div class="codicon codicon-chevron-down"></div>
                       assets
                       <ul>
-                        <li>
-                          <i class="codicon codicon-file-code"></i> styles.css
-                        </li>
-                        <li>
-                          <i class="codicon codicon-file-code"></i> logo.svg
-                        </li>
+                        <li><i class="codicon codicon-file-code"></i> styles.css</li>
+                        <li><i class="codicon codicon-file-code"></i> logo.svg</li>
                       </ul>
                     </li>
                     <li class="folder">
@@ -223,12 +183,8 @@
                   </ul>
                 </li>
                 <li><i class="codicon codicon-file-code"></i> .gitignore</li>
-                <li>
-                  <i class="codicon codicon-file-code"></i> babel.config.js
-                </li>
-                <li>
-                  <i class="codicon codicon-file-code"></i> package-lock.json
-                </li>
+                <li><i class="codicon codicon-file-code"></i> babel.config.js</li>
+                <li><i class="codicon codicon-file-code"></i> package-lock.json</li>
                 <li><i class="codicon codicon-file-code"></i> package.json</li>
               </ul>
             </li>
@@ -243,50 +199,42 @@
           <div class="tab inactive">App.vue</div>
         </div>
         <div class="selected-file">
-          
           <div class="editor-content">
             <div class="line-numbers" #lineNumbers>
               <!-- Aquí se generan los números de línea -->
             </div>
             <pre #codeElement>
-              <code>// <span class="comment">Example borrowed from: https://github.com/PacktPublishing/JavaScript-by-Example/blob/master/Chapter07/CompletedCode/src/services/api/apiCall.js</span>
-<span class="keyword">const</span> <span class="const">timeoutDuration</span> <span class="operators-special">=</span> <span class="number">12000</span><span class="foreground">;</span>
-
-<span class="keyword">const</span> <span class="const">NUMBER</span> <span class="operators-special">=</span> <span class="number">81274509182375409237</span><span class="foreground">;</span>
-
-<span class="keyword">export</span> <span class="keyword">function</span> <span class="function-name">apiCall</span><span class="foreground">(</span><span class="variable">route</span><span class="foreground">,</span> <span class="variable">body</span> <span class="opeators-special">=</span> <span class="default-value">&#123;&#125;</span>, <span class="variable">method</span>=<span class="string">'post'</span>) <span class="foreground">&#123;</span>
-    <span class="keyword">const</span> <span class="const">request</span><span class="operators-special"> =</span><span class="keyword">new</span> <span class="const">Promise</span><span class="foreground">((</span><span class="method">resolve</span>, <span class="method">reject</span> <span class="foreground">  )</span> => <span class="foreground"> &#123;</span>
-        <span class="keyword">const</span> <span class="const">headers</span> <span class="operators-special">=</span> <span class="keyword">new</span> <span class="const">Headers</span><span class="foreground">(&#123;</span>
-            <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
-        <span class="foreground">&#125;);</span>
-
-        <span class="keyword">const</span> <span class="const">requestDetails</span> <span class="operators-special">=</span> <span class="foreground">&#123;</span>
-            <span class="variable">method</span>,
-            <span class="variable">mode</span>: <span class="string">'cors'</span>,
-            <span class="variable">headers</span>,
-            <span class="foreground"> &#125;;</span>
-
-        <span class="keyword">if</span><span class="foreground">(</span><span class="variable">method</span> <span class="operators-special">!==</span> <span class="string">'GET'</span>) <span class="const">requestDetails</span><span class="propertie">.body</span> = <span class="const">JSON</span><span class="method">.stringify</span><span class="foreground">(</span><span class="variable">body</span><span class="foreground">);</span>
-
-        <span class="keyword">function</span> <span class="function-name">handleErrors</span><span class="foreground">(</span><span class="variable">response</span><span class="foreground">) &#123;</span>
-            <span class="keyword">if</span>(<span class="variable">response.ok</span>) &#123;
+              <code>
+                // <span class="comment">Example borrowed from: https://github.com/PacktPublishing/JavaScript-by-Example/blob/master/Chapter07/CompletedCode/src/services/api/apiCall.js</span>
+                <span class="keyword">const</span> <span class="const">timeoutDuration</span> <span class="operators-special">=</span> <span class="number">12000</span><span class="foreground">;</span>
+                <span class="keyword">const</span> <span class="const">NUMBER</span> <span class="operators-special">=</span> <span class="number">81274509182375409237</span><span class="foreground">;</span>
+                <span class="keyword">export</span> <span class="keyword">function</span> <span class="function-name">apiCall</span><span class="foreground">(</span><span class="variable">route</span><span class="foreground">,</span> <span class="variable">body</span> <span class="opeators-special">=</span> <span class="default-value">&#123;&#125;</span>, <span class="variable">method</span>=<span class="string">'post'</span>) <span class="foreground">&#123;</span>
+                <span class="keyword">const</span> <span class="const">request</span><span class="operators-special"> =</span><span class="keyword">new</span> <span class="const">Promise</span><span class="foreground">((</span><span class="method">resolve</span>, <span class="method">reject</span> <span class="foreground">  )</span> => <span class="foreground"> &#123;</span>
+                <span class="keyword">const</span> <span class="const">headers</span> <span class="operators-special">=</span> <span class="keyword">new</span> <span class="const">Headers</span><span class="foreground">(&#123;</span>
+                <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+                <span class="foreground">&#125;);</span>
+                <span class="keyword">const</span> <span class="const">requestDetails</span> <span class="operators-special">=</span> <span class="foreground">&#123;</span>
+                <span class="variable">method</span>,
+                <span class="variable">mode</span>: <span class="string">'cors'</span>,
+                <span class="variable">headers</span>,
+                <span class="foreground"> &#125;;</span>
+                <span class="keyword">if</span><span class="foreground">(</span><span class="variable">method</span> <span class="operators-special">!==</span> <span class="string">'GET'</span>) <span class="const">requestDetails</span><span class="propertie">.body</span> = <span class="const">JSON</span><span class="method">.stringify</span><span class="foreground">(</span><span class="variable">body</span><span class="foreground">);</span>
+                <span class="keyword">function</span> <span class="function-name">handleErrors</span><span class="foreground">(</span><span class="variable">response</span><span class="foreground">) &#123;</span>
+                <span class="keyword">if</span>(<span class="variable">response.ok</span>) &#123;
                 <span class="keyword">return</span> <span class="variable">response</span>.<span class="function-name">json</span><span class="foreground">();</span>
-            <span class="foreground">&#125;</span> <span class="keyword">else</span> <span class="foreground">&#123;</span>
+                <span class="foreground">&#125;</span> <span class="keyword">else</span> <span class="foreground">&#123;</span>
                 <span class="keyword">throw</span> <span class="class-name">Error</span><span class="foreground">(</span><span class="variable">response.statusText</span><span class="foreground">);</span>
-            <span class="foreground">&#125;</span>
-        <span class="foreground">&#125;</span>
-
-        <span class="keyword">const</span> <span class="const">serverURL</span> <span class="operators-special">=</span> <span class="const">process.env.REACT_APP_SERVER_URL</span> <span class="operators-special">||</span> <span class="string">'http://localhost:3000'</span><span class="foreground">;</span>
-
-        <span class="operators-special">fetch</span><span class="foreground">(</span><span class="template-string"><span class="keyword">&#96;&#36;&#123;</span><span class="const">serverURL</span><span class="keyword">&#125;&#47;&#36;&#123;</span><span class="variable">route</span><span class="keyword">&#125;&#96;</span></span><span class="foreground">,</span> <span class="const">requestDetails</span><span class="foreground">)</span>
-        <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="function-name">handleErrors</span>)
-        <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="variable">data</span><span class="keyword"> =></span> <span class="function-name">resolve</span><span class="foreground">(</span><span class="variable">data</span><span class="foreground">))</span>
-        <span class="foreground">.</span><span class="function-name">catch</span><span class="foreground">(</span><span class="variable">err</span><span class="keyword"> =></span> <span class="function-name">reject</span><span class="foreground">(</span><span class="variable">err</span><span class="foreground">));</span>
-    <span class="foreground">&#125;);</span>
-
-    <span class="keyword">return</span> <span class="variable">request</span><span class="foreground">;</span>
-    <span class="foreground">&#125;</span>
-</code>
+                <span class="foreground">&#125;</span>
+                <span class="foreground">&#125;</span>
+                <span class="keyword">const</span> <span class="const">serverURL</span> <span class="operators-special">=</span> <span class="const">process.env.REACT_APP_SERVER_URL</span> <span class="operators-special">||</span> <span class="string">'http://localhost:3000'</span><span class="foreground">;</span>
+                <span class="operators-special">fetch</span><span class="foreground">(</span><span class="template-string"><span class="keyword">&#96;&#36;&#123;</span><span class="const">serverURL</span><span class="keyword">&#125;&#47;&#36;&#123;</span><span class="variable">route</span><span class="keyword">&#125;&#96;</span></span><span class="foreground">,</span> <span class="const">requestDetails</span><span class="foreground">)</span>
+                <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="function-name">handleErrors</span>)
+                <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="variable">data</span><span class="keyword"> =></span> <span class="function-name">resolve</span><span class="foreground">(</span><span class="variable">data</span><span class="foreground">))</span>
+                <span class="foreground">.</span><span class="function-name">catch</span><span class="foreground">(</span><span class="variable">err</span><span class="keyword"> =></span> <span class="function-name">reject</span><span class="foreground">(</span><span class="variable">err</span><span class="foreground">));</span>
+                <span class="foreground">&#125;);</span>
+                <span class="keyword">return</span> <span class="variable">request</span><span class="foreground">;</span>
+                <span class="foreground">&#125;</span>
+              </code>
             </pre>
           </div>
         </div>
