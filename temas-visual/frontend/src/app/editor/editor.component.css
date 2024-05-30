@@ -214,7 +214,7 @@ button:hover {
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .selected-file {
@@ -227,7 +227,7 @@ button:hover {
 
 .explorer {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
   margin-bottom: 20px;
 }
 
@@ -321,7 +321,7 @@ button:hover {
   position: relative;
   background-color: var(--editor-background);
   color: var(--editor-foreground);
-  overflow: auto;
+  overflow: hidden;
   padding: 20px;
 }
 
@@ -344,7 +344,6 @@ pre {
   padding-left: 20px;
   background-color: var(--editor-background);
   color: var(--editor-foreground);
-  overflow: auto;
 }
 
 .status-bar {

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 // Módulos de Angular Material y Angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -19,11 +20,23 @@ import { ColorPickerModule } from 'ngx-color-picker';
 // Otros módulos
 import { HttpClientModule } from '@angular/common/http';
 import { EditorComponent } from './editor/editor.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { LandingComponent } from './landing/landing.component';
+import { UserComponent } from './user/user.component';
+import { ThemesComponent } from './themes/themes.component';
+import { ThemeListComponent } from './theme-list/theme-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditorComponent
+    EditorComponent,
+    RegisterComponent,
+    LoginComponent,
+    LandingComponent,
+    UserComponent,
+    ThemesComponent,
+    ThemeListComponent
     // Añade aquí otros componentes que hayas creado
   ],
   imports: [
@@ -41,7 +54,7 @@ import { EditorComponent } from './editor/editor.component';
     HttpClientModule
   ],
   providers: [
-    // Remueve `provideAnimationsAsync` si no es necesario
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

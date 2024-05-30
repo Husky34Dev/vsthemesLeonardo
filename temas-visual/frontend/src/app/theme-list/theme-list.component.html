@@ -1,0 +1,13 @@
+<div class="theme-list-background">
+  <div class="theme-list-container">
+    <h2>My Themes</h2>
+    <div *ngIf="themes.length === 0" class="no-themes">No themes found.</div>
+    <ul *ngIf="themes.length > 0">
+      <li *ngFor="let theme of themes">
+        <span>{{ theme.name }}</span>
+        <button (click)="downloadTheme(theme.id, theme.name)">Download</button>
+      </li>
+    </ul>
+    <button class="back-button" (click)="navigateToLanding()">Back to Landing</button>
+  </div>
+</div>

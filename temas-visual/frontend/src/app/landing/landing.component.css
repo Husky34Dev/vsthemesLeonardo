@@ -1,0 +1,67 @@
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    font-family: 'Garamond', serif;
+    padding: 2em;
+    background-color: rgba(245, 245, 220, 0.85); /* Fondo con transparencia */
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  h2 {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+    text-shadow: 1px 1px #ccc;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 1em;
+  }
+  
+  button {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 6px;
+    background-color: #8b4513;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #5a3310;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  .logout-button {
+    padding: 0.7em 2em;
+    border: none;
+    border-radius: 6px;
+    background-color: #8b4513;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 1em;
+  }
+  
+  .logout-button:hover {
+    background-color: #5a3310;
+    transform: translateY(-2px);
+  }
+  
+  .logout-button:active {
+    transform: translateY(1px);
+  }
+  

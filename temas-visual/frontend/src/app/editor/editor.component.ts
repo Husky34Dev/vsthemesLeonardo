@@ -8,6 +8,10 @@ interface ColorField {
   expanded?: boolean;  // Propiedad para controlar si la tarjeta está expandida
 }
 
+interface ThemeResponse {
+  id: number;
+}
+
 type SectionKey = 'editor' | 'syntax' | 'sidebar' | 'statusBar' | 'topBar' | 'additional' | 'tabs';
 
 @Component({
@@ -20,31 +24,31 @@ export class EditorComponent implements AfterViewInit {
   @ViewChild('lineNumbers', { static: true }) lineNumbersElement!: ElementRef;
 
   editorColors: ColorField[] = [
-    { label: '--editor-background', value: '#1e1e1e', description: 'Editor Background - Changes the background color of the editor.' },
-    { label: '--editor-foreground', value: '#d4d4d4', description: 'Editor Foreground - Changes the text color of the editor.' },
-    { label: '--editor-line-number-foreground', value: '#237893', description: 'Editor Line Number - Changes the color of the line numbers.' },
+    { label: '--editor-background', value: '#fbf8f1', description: 'Editor Background - Changes the background color of the editor.' },
+    { label: '--editor-foreground', value: '#3c3b3a', description: 'Editor Foreground - Changes the text color of the editor.' },
+    { label: '--editor-line-number-foreground', value: '#8c6b58', description: 'Editor Line Number - Changes the color of the line numbers.' },
   ];
 
   syntaxColors: ColorField[] = [
-    { label: '--keyword', value: '#c678dd', description: 'Keyword - Changes the color of keywords in the code.' },
-    { label: '--numbers', value: '#ff7c00', description: 'Numbers - Changes the color of numbers in the code.' },
-    { label: '--variables-properties', value: '#ec0113', description: 'Variables and Properties - Changes the color of variables and properties.' },
-    { label: '--function-methods', value: '#00ff64', description: 'Functions and Methods - Changes the color of function and method names.' },
-    { label: '--classes-constants', value: '#ffa600', description: 'Classes and Constants - Changes the color of class names and constants.' },
-    { label: '--string', value: '#0800ff', description: 'Strings - Changes the color of string literals.' },
-    { label: '--operators-special', value: '#14ff91', description: 'Operators and Special Characters - Changes the color of operators and special characters.' },
-    { label: '--comments', value: '#0055ff', description: 'Comments - Changes the color of comments in the code.' },
+    { label: '--keyword', value: '#b25a00', description: 'Keyword - Changes the color of keywords in the code.' },
+    { label: '--numbers', value: '#b35800', description: 'Numbers - Changes the color of numbers in the code.' },
+    { label: '--variables-properties', value: '#007073', description: 'Variables and Properties - Changes the color of variables and properties.' },
+    { label: '--function-methods', value: '#005f56', description: 'Functions and Methods - Changes the color of function and method names.' },
+    { label: '--classes-constants', value: '#1c7d7e', description: 'Classes and Constants - Changes the color of class names and constants.' },
+    { label: '--string', value: '#006b5e', description: 'Strings - Changes the color of string literals.' },
+    { label: '--operators-special', value: '#4b5c5c', description: 'Operators and Special Characters - Changes the color of operators and special characters.' },
+    { label: '--comments', value: '#5e5e5e', description: 'Comments - Changes the color of comments in the code.' },
   ];
 
   tabColors: ColorField[] = [
-    { label: '--tabs-container-background', value: '#333333', description: 'Tabs Container Background - Changes the background color of the tabs container.' },
-    { label: '--tab-active-background', value: '#1e1e1e', description: 'Active Tab Background - Changes the background color of the active tab.' },
-    { label: '--tab-active-foreground', value: '#ffffff', description: 'Active Tab Foreground - Changes the text color of the active tab.' },
-    { label: '--tab-border', value: '#444444', description: 'Tab Border - Changes the color of the border around tabs.' },
-    { label: '--tab-inactive-background', value: '#2d2d2d', description: 'Inactive Tab Background - Changes the background color of inactive tabs.' },
-    { label: '--tab-inactive-foreground', value: '#aaaaaa', description: 'Inactive Tab Foreground - Changes the text color of inactive tabs.' },
-    { label: '--tab-hover-background', value: '#3d3d3d', description: 'Tab Hover Background - Changes the background color when hovering over a tab.' },
-    { label: '--tab-hover-foreground', value: '#ffffff', description: 'Tab Hover Foreground - Changes the text color when hovering over a tab.' }
+    { label: '--tabs-container-background', value: '#e8dfd0', description: 'Tabs Container Background - Changes the background color of the tabs container.' },
+    { label: '--tab-active-background', value: '#d6c7a1', description: 'Active Tab Background - Changes the background color of the active tab.' },
+    { label: '--tab-active-foreground', value: '#3c3b3a', description: 'Active Tab Foreground - Changes the text color of the active tab.' },
+    { label: '--tab-border', value: '#c0b28f', description: 'Tab Border - Changes the color of the border around tabs.' },
+    { label: '--tab-inactive-background', value: '#e8dfd0', description: 'Inactive Tab Background - Changes the background color of inactive tabs.' },
+    { label: '--tab-inactive-foreground', value: '#8c6b58', description: 'Inactive Tab Foreground - Changes the text color of inactive tabs.' },
+    { label: '--tab-hover-background', value: '#d6c7a1', description: 'Tab Hover Background - Changes the background color when hovering over a tab.' },
+    { label: '--tab-hover-foreground', value: '#3c3b3a', description: 'Tab Hover Foreground - Changes the text color when hovering over a tab.' }
   ];
 
   sidebarColors: ColorField[] = [
@@ -53,23 +57,33 @@ export class EditorComponent implements AfterViewInit {
     { label: '--side-bar-section-header-background', value: '#00000000', description: 'Sidebar Section Header Background - Changes the background color of section headers in the sidebar.' },
     { label: '--side-bar-section-header-foreground', value: '#616161', description: 'Sidebar Section Header Foreground - Changes the text color of section headers in the sidebar.' },
     { label: '--side-bar-section-header-border', value: '#61616130', description: 'Sidebar Section Header Border - Changes the border color of section headers in the sidebar.' },
-    { label: '--side-bar-section-border', value: '#00000000', description: 'Sidebar Section Border - Changes the border color of sections in the sidebar.' },
-    { label: '--list-hover-background', value: '#e8e8e8', description: 'List Hover Background - Changes the background color when hovering over items in lists.' },
-    { label: '--list-hover-foreground', value: '#616161', description: 'List Hover Foreground - Changes the text color when hovering over items in lists.' },
+    { label: '--side-bar-section-border', value: '#c0b28f', description: 'Sidebar Section Border - Changes the border color of sections in the sidebar.' },
+    { label: '--list-hover-background', value: '#d6c7a1', description: 'List Hover Background - Changes the background color when hovering over items in lists.' },
+    { label: '--list-hover-foreground', value: '#3c3b3a', description: 'List Hover Foreground - Changes the text color when hovering over items in lists.' },
   ];
 
   statusBarColors: ColorField[] = [
-    { label: '--status-bar-background', value: '#007acc', description: 'Status Bar Background - Changes the background color of the status bar.' },
+    { label: '--status-bar-background', value: '#7b7060', description: 'Status Bar Background - Changes the background color of the status bar.' },
     { label: '--status-bar-foreground', value: '#ffffff', description: 'Status Bar Foreground - Changes the text color in the status bar.' },
-    { label: '--status-bar-background-hover', value: '#ffffff', description: 'Status Bar Hover Background - Changes the background color when hovering over items in the status bar.' },
+    { label: '--status-bar-background-hover', value: '#5e5e5e', description: 'Status Bar Hover Background - Changes the background color when hovering over items in the status bar.' },
     { label: '--status-bar-remote-foreground', value: '#925151', description: 'Status Bar Remote Foreground - Changes the text color of remote items in the status bar.' }
   ];
 
   topBarColors: ColorField[] = [
-    { label: '--top-bar-background', value: '#2c2c2c', description: 'Top Bar Background - Changes the background color of the top bar.' },
-    { label: '--top-bar-text', value: '#ffffff', description: 'Top Bar Text - Changes the text color in the top bar.' },
+    { label: '--top-bar-background', value: '#d6c7a1', description: 'Top Bar Background - Changes the background color of the top bar.' },
+    { label: '--top-bar-text', value: '#3c3b3a', description: 'Top Bar Text - Changes the text color in the top bar.' },
     { label: '--title-bar-border', value: '#00000000', description: 'Title Bar Border - Changes the border color of the title bar.' },
   ];
+
+  expandedSections: Record<SectionKey, boolean> = {
+    editor: false,
+    syntax: false,
+    sidebar: false,
+    statusBar: false,
+    topBar: false,
+    additional: false,
+    tabs: false,
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -110,7 +124,7 @@ export class EditorComponent implements AfterViewInit {
     this.statusBarColors = updateColorValues(this.statusBarColors);
     this.topBarColors = updateColorValues(this.topBarColors);
   }
-
+//FIX THIS
   sendColorsToServer() {
     this.extractColors();
     const themeData = {
@@ -119,28 +133,31 @@ export class EditorComponent implements AfterViewInit {
       colors: this.colors,
     };
 
-    this.http.post('http://127.0.0.1:8000/api/theme', themeData).subscribe(response => {
+    this.http.post<ThemeResponse>('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'json' }).subscribe(response => {
+      const themeId = response.id;
+      this.downloadGeneratedTheme(themeId, themeData.name);
       console.log('Theme saved successfully');
+    }, error => {
+      console.error('Error saving theme:', error);
+    });
+  }
+
+  downloadGeneratedTheme(themeId: number, themeName: string) {
+    this.http.get(`http://127.0.0.1:8000/api/theme/${themeId}/download`, { responseType: 'blob' }).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${themeName}-theme.vsix`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading theme:', error);
     });
   }
 
   downloadTheme() {
     this.extractColors();
-    const themeData = {
-      name: 'Custom Theme',
-      type: 'dark',
-      colors: this.colors,
-    };
-
-    this.http.post('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'blob' }).subscribe(response => {
-      const blob = new Blob([response], { type: 'application/octet-stream' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'custom-theme.vsix';
-      a.click();
-      window.URL.revokeObjectURL(url);
-    });
+    this.sendColorsToServer();
   }
 
   toggleSection(section: SectionKey) {
@@ -154,16 +171,6 @@ export class EditorComponent implements AfterViewInit {
   toggleExpandColor(color: ColorField) {
     color.expanded = !color.expanded;
   }
-
-  expandedSections: Record<SectionKey, boolean> = {
-    editor: false,
-    syntax: false,
-    sidebar: false,
-    statusBar: false,
-    topBar: false,
-    additional: false,
-    tabs: false,
-  };
 
   generateLineNumbers() {
     const codeElement = this.codeElement.nativeElement;

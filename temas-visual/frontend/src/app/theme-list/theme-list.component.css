@@ -1,0 +1,110 @@
+.theme-list-background {
+  background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-list-container {
+  width: 600px;
+  padding: 2em;
+  background-color: rgba(245, 245, 220, 0.95); /* Beige con un poco más de transparencia */
+  border: 1px solid #d3d3d3;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  font-family: 'Garamond', serif;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #2e2e2e;
+  font-size: 2.5em;
+  margin-bottom: 1em;
+  text-shadow: 1px 1px #ccc;
+  position: relative;
+}
+
+h2:after {
+  content: '';
+  display: block;
+  width: 50%;
+  margin: 0.5em auto;
+  border-bottom: 2px solid #8b4513;
+}
+
+.no-themes {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+
+  span {
+    font-weight: bold;
+    flex: 1;
+  }
+
+  button {
+    background-color: #8b4513;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  button:hover {
+    background-color: #5a3310;
+    transform: translateY(-2px);
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+.back-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 0.9em;
+  border: none;
+  border-radius: 6px;
+  background-color: #8b4513;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  text-align: center;
+}
+
+.back-button:hover {
+  background-color: #5a3310;
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(1px);
+}

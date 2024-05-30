@@ -1,73 +1,70 @@
 :root {
-  --editor-background: #1e1e1e;
-  --editor-foreground: #d4d4d4;
-  --editor-line-number-foreground: #237893;
-  --keyword: #c678dd;
-  --numbers: #ff7c00;
-  --variables-properties: #ec0113;
-  --function-methods: #00ff64;
-  --classes-constants: #ffa600;
-  --string: #0800ff;
-  --operators-special: #14ff91;
-  --comments: #0055ff;
-  --foreground: #0034ff;
-  --tab-active-background: #1e1e1e;
-  --tab-inactive-background: #2d2d2d;
-  --tab-border: #444444;
-  --tab-active-foreground: #ffffff;
-  --tabs-container-background: #333333;
-  --tab-inactive-foreground: #aaaaaa;
-  --tab-hover-background: #3d3d3d;
-  --tab-hover-foreground: #ffffff;
-  --sidebar-background: #f3f3f3;
-  --sidebar-foreground: #616161;
-  --sidebar-section-border:#00000000;
-  --side-bar-section-header-foreground: #6f6f6f;
-  --list-hover-background: #e8e8e8;
-  --list-hover-foreground: #616161;
-  --list-active-selection-background: #0060c0;
-  --list-active-selection-foreground: #ffffff;
-  --side-bar-section-header-border: #61616130;
-  --status-bar-background: #007acc;
-  --status-bar-foreground: #ffffff;
-  --status-bar-background-hover:none;
-  --status-bar-remote-background:#925151;
-  --top-bar-background: #2c2c2c;
-  --top-bar-text: #ffffff;
-  --title-bar-active-background: #dddddd;
-  --title-bar-active-foreground: #333333;
-  --title-bar-inactive-background: #dddddd99;
-  --title-bar-inactive-foreground: #33333399;
-  --title-bar-border: #00000000;
-  --activity-bar-background: #2c2c2c;
-  --activity-bar-foreground: #ffffff;
-  --activity-bar-inactive-foreground: #ffffff66;
-  --activity-bar-badge-foreground: #ffffff;
-  --activity-bar-badge-background: #007acc;
-  --menubar-selection-foreground: #333333;
-  --menubar-selection-background: #0000001a;
-  --menu-foreground: #616161;
-  --menu-background: #ffffff;
-  --menu-selection-foreground: #ffffff;
-  --menu-selection-background: #0060c0;
-  --menu-selection-border: #00000000;
-  --menu-separator-background: #888888;
-  --menu-border: #00000085;
-  --button-background: #007acc;
-  --button-foreground: #ffffff;
-  --button-hover-background: #0062a3;
-  --button-secondary-foreground: #ffffff;
-  --button-secondary-background: #5f6a79;
-  --button-secondary-hover-background: #4c5561;
-  --input-background: #ffffff;
-  --input-border: #00000000;
-  --input-foreground: #616161;
-  --input-option-active-background: #0090f133;
-  --input-option-active-border: #007acc00;
-  --input-option-active-foreground: #000000;
-  --input-placeholder-foreground: #767676;
-  --text-link-foreground: #006ab1;
-
-
- 
+  --editor-background: #fbf8f1; /* Color beige, similar a un papel antiguo */
+  --editor-foreground: #3c3b3a; /* Color oscuro para el texto */
+  --editor-line-number-foreground: #8c6b58; /* Color marrón claro para los números de línea */
+  --keyword: #b25a00; /* Naranja oscuro */
+  --numbers: #b35800; /* Naranja quemado */
+  --variables-properties: #007073; /* Verde oscuro */
+  --function-methods: #005f56; /* Verde oliva */
+  --classes-constants: #1c7d7e; /* Verde turquesa */
+  --string: #006b5e; /* Verde jade */
+  --operators-special: #4b5c5c; /* Verde pálido */
+  --comments: #5e5e5e; /* Gris oscuro */
+  --foreground: #3c3b3a; /* Color oscuro para el texto general */
+  --tab-active-background: #d6c7a1; /* Color beige oscuro para la pestaña activa */
+  --tab-inactive-background: #e8dfd0; /* Color beige claro para las pestañas inactivas */
+  --tab-border: #c0b28f; /* Color marrón claro para el borde de las pestañas */
+  --tab-active-foreground: #3c3b3a; /* Color oscuro para el texto de la pestaña activa */
+  --tabs-container-background: #e8dfd0; /* Fondo para el contenedor de pestañas */
+  --tab-inactive-foreground: #8c6b58; /* Color marrón claro para el texto de las pestañas inactivas */
+  --tab-hover-background: #d6c7a1; /* Fondo para la pestaña en hover */
+  --tab-hover-foreground: #3c3b3a; /* Color oscuro para el texto en hover */
+  --sidebar-background: #f3f3f3; /* Fondo claro para la barra lateral */
+  --sidebar-foreground: #616161; /* Color gris oscuro para el texto de la barra lateral */
+  --sidebar-section-border: #c0b28f; /* Borde claro para las secciones de la barra lateral */
+  --side-bar-section-header-foreground: #6f6f6f; /* Color gris oscuro para los encabezados de sección */
+  --list-hover-background: #d6c7a1; /* Fondo para los elementos en hover en listas */
+  --list-hover-foreground: #3c3b3a; /* Color oscuro para el texto en hover */
+  --list-active-selection-background: #b25a00; /* Fondo naranja para la selección activa */
+  --list-active-selection-foreground: #ffffff; /* Color blanco para el texto de la selección activa */
+  --side-bar-section-header-border: #c0b28f; /* Borde claro para los encabezados de sección */
+  --status-bar-background: #7b7060; /* Fondo oscuro para la barra de estado */
+  --status-bar-foreground: #ffffff; /* Color blanco para el texto en la barra de estado */
+  --status-bar-background-hover: #5e5e5e; /* Fondo en hover para la barra de estado */
+  --status-bar-remote-foreground: #925151; /* Color marrón oscuro para elementos remotos */
+  --top-bar-background: #d6c7a1; /* Fondo claro para la barra superior */
+  --top-bar-text: #3c3b3a; /* Color oscuro para el texto en la barra superior */
+  --title-bar-active-background: #ddd; /* Fondo para la barra de título activa */
+  --title-bar-active-foreground: #333; /* Color oscuro para el texto en la barra de título activa */
+  --title-bar-inactive-background: #ddd; /* Fondo para la barra de título inactiva */
+  --title-bar-inactive-foreground: #333; /* Color oscuro para el texto en la barra de título inactiva */
+  --title-bar-border: #00000000; /* Sin borde para la barra de título */
+  --activity-bar-background: #d6c7a1; /* Fondo claro para la barra de actividades */
+  --activity-bar-foreground: #3c3b3a; /* Color oscuro para el texto en la barra de actividades */
+  --activity-bar-inactive-foreground: #8c6b58; /* Color marrón claro para el texto inactivo en la barra de actividades */
+  --activity-bar-badge-foreground: #ffffff; /* Color blanco para el texto de las insignias en la barra de actividades */
+  --activity-bar-badge-background: #b25a00; /* Fondo naranja para las insignias en la barra de actividades */
+  --menubar-selection-foreground: #333; /* Color oscuro para el texto seleccionado en la barra de menú */
+  --menubar-selection-background: #0000001a; /* Fondo en hover para la barra de menú */
+  --menu-foreground: #616161; /* Color gris oscuro para el texto del menú */
+  --menu-background: #ffffff; /* Fondo blanco para el menú */
+  --menu-selection-foreground: #ffffff; /* Color blanco para el texto seleccionado en el menú */
+  --menu-selection-background: #0060c0; /* Fondo azul para la selección en el menú */
+  --menu-selection-border: #00000000; /* Sin borde para la selección en el menú */
+  --menu-separator-background: #888888; /* Color gris para los separadores en el menú */
+  --menu-border: #00000085; /* Borde oscuro para el menú */
+  --button-background: #b25a00; /* Fondo naranja para los botones */
+  --button-foreground: #ffffff; /* Color blanco para el texto en los botones */
+  --button-hover-background: #8c6b58; /* Fondo marrón claro en hover para los botones */
+  --button-secondary-foreground: #ffffff; /* Color blanco para el texto en los botones secundarios */
+  --button-secondary-background: #5f6a79; /* Fondo gris oscuro para los botones secundarios */
+  --button-secondary-hover-background: #4c5561; /* Fondo más oscuro en hover para los botones secundarios */
+  --input-background: #ffffff; /* Fondo blanco para los campos de entrada */
+  --input-border: #c0b28f; /* Borde claro para los campos de entrada */
+  --input-foreground: #3c3b3a; /* Color oscuro para el texto en los campos de entrada */
+  --input-option-active-background: #0090f133; /* Fondo azul claro para las opciones activas */
+  --input-option-active-border: #007acc00; /* Sin borde para las opciones activas */
+  --input-option-active-foreground: #000000; /* Color negro para el texto de las opciones activas */
+  --input-placeholder-foreground: #767676; /* Color gris para el texto de marcador de posición */
+  --text-link-foreground: #006ab1; /* Color azul para los enlaces de texto */
 }

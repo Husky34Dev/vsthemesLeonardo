@@ -1,0 +1,109 @@
+.auth-background {
+  background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container {
+  width: 400px;
+  padding: 2em;
+  background-color: rgba(245, 245, 220, 0.95); /* Beige con un poco más de transparencia */
+  border: 1px solid #d3d3d3;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  font-family: 'Garamond', serif;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #2e2e2e;
+  font-size: 2.5em;
+  margin-bottom: 1em;
+  text-shadow: 1px 1px #ccc;
+  position: relative;
+}
+
+h2:after {
+  content: '';
+  display: block;
+  width: 50%;
+  margin: 0.5em auto;
+  border-bottom: 2px solid #8b4513;
+}
+
+.form-group {
+  margin-bottom: 1.5em;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+input {
+  width: 90%;
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-color: #8b4513;
+  outline: none;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 0.9em;
+  border: none;
+  border-radius: 6px;
+  background-color: #8b4513;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #5a3310;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+p {
+  text-align: center;
+  margin-top: 1em;
+  color: #555;
+  font-size: 0.9em;
+}
+
+a {
+  color: #8b4513;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  font-style: italic;
+}

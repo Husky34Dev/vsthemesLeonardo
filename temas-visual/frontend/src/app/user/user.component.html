@@ -1,0 +1,27 @@
+<div class="auth-background">
+    <div class="auth-container">
+      <h2>User Profile</h2>
+      <form (ngSubmit)="updateUser()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="user.name" name="name" required>
+          <div *ngIf="errorMessages.name" class="error-message">{{ errorMessages.name }}</div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+          <div *ngIf="errorMessages.email" class="error-message">{{ errorMessages.email }}</div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password (leave blank to keep current):</label>
+          <input type="password" id="password" [(ngModel)]="user.password" name="password">
+          <div *ngIf="errorMessages.password" class="error-message">{{ errorMessages.password }}</div>
+        </div>
+        <button type="submit">Update</button>
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      </form>
+      <button (click)="goBack()">Volver</button>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+  
