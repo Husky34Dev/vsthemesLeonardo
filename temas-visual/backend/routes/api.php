@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('user/themes', [ThemeController::class, 'getUserThemes']);
     Route::get('theme/{id}/download', [ThemeController::class, 'downloadTheme']);
-});
+    Route::post('theme/download', [ThemeController::class, 'generateAndDownloadTheme']);
+    Route::get('/theme/download/leonardo', [ThemeController::class, 'downloadLeonardoTheme']);});

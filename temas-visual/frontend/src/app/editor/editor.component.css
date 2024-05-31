@@ -19,7 +19,33 @@ body {
   background-size: cover;
   */
 }
+.theme-details {
+  margin-bottom: 20px;
+}
 
+.theme-details label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffffff; /* Texto blanco */
+  font-size: 14px;
+}
+
+.theme-details input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #7f8c8d;
+  border-radius: 5px;
+  background-color: #2f3640; /* Fondo del input */
+  color: #ffffff; /* Color del texto */
+  font-size: 14px;
+}
+
+.theme-details input:focus {
+  border-color: #f39c12; /* Color de borde al enfocar */
+  outline: none;
+  background-color: #34495e; /* Fondo al enfocar */
+}
 .color-settings {
   width: 25%;
   background-color: #1e272e; /* Fondo más oscuro para el menú */

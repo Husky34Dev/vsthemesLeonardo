@@ -1,6 +1,12 @@
 <div class="theme-list-background">
   <div class="theme-list-container">
     <h2>My Themes</h2>
+
+    <div class="leonardo-theme-test">
+      <h3>Test our Leonardo theme!</h3>
+      <button (click)="downloadLeonardoTheme()">Download Leonardo Theme</button>
+    </div>
+
     <div *ngIf="themes.length === 0" class="no-themes">No themes found.</div>
     <ul *ngIf="themes.length > 0">
       <li *ngFor="let theme of themes">

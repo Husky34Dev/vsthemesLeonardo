@@ -40,6 +40,19 @@ export class ThemeListComponent implements OnInit {
     });
   }
 
+  downloadLeonardoTheme(): void {
+    this.themeService.downloadLeonardoTheme().subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'leonardo-theme.vsix';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading Leonardo theme', error);
+    });
+  }
+
   navigateToLanding(): void {
     this.router.navigate(['/landing']);
   }

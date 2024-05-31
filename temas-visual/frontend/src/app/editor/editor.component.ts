@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 interface ColorField {
   label: string;
@@ -22,6 +24,13 @@ type SectionKey = 'editor' | 'syntax' | 'sidebar' | 'statusBar' | 'topBar' | 'ad
 export class EditorComponent implements AfterViewInit {
   @ViewChild('codeElement', { static: true }) codeElement!: ElementRef;
   @ViewChild('lineNumbers', { static: true }) lineNumbersElement!: ElementRef;
+
+  themeDetails = {
+    name: '',
+    publisher: '',
+    description: '',
+    type: 'dark'
+  };
 
   editorColors: ColorField[] = [
     { label: '--editor-background', value: '#fbf8f1', description: 'Editor Background - Changes the background color of the editor.' },
@@ -85,7 +94,7 @@ export class EditorComponent implements AfterViewInit {
     tabs: false,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngAfterViewInit() {
     this.generateLineNumbers();
@@ -124,36 +133,68 @@ export class EditorComponent implements AfterViewInit {
     this.statusBarColors = updateColorValues(this.statusBarColors);
     this.topBarColors = updateColorValues(this.topBarColors);
   }
-//FIX THIS
+
+  applyCustomTheme() {
+  this.http.get<any>('assets/leonardo_theme.json').subscribe(theme => {
+    this.applyTheme(theme);
+  });
+}
+
+applyTheme(theme: any) {
+  // Apply colors
+  for (const key in theme.colors) {
+    if (theme.colors.hasOwnProperty(key)) {
+      document.documentElement.style.setProperty(`--${key}`, theme.colors[key]);
+    }
+  }
+
+  // Apply token colors
+  theme.tokenColors.forEach((tokenColor: any) => {
+    const cssRule = `.${tokenColor.scope.replace(/\./g, '-')}`;
+    const style = document.createElement('style');
+    style.innerHTML = `${cssRule} { color: ${tokenColor.settings.foreground}; }`;
+    document.head.appendChild(style);
+  });
+}
+
+
   sendColorsToServer() {
-    this.extractColors();
-    const themeData = {
-      name: 'Custom Theme',
-      type: 'dark',
-      colors: this.colors,
-    };
+  this.extractColors();
+  const themeData = {
+    name: this.themeDetails.name,
+    type: this.themeDetails.type,
+    colors: this.colors,
+  };
 
-    this.http.post<ThemeResponse>('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'json' }).subscribe(response => {
-      const themeId = response.id;
-      this.downloadGeneratedTheme(themeId, themeData.name);
-      console.log('Theme saved successfully');
-    }, error => {
-      console.error('Error saving theme:', error);
-    });
-  }
+  this.http.post<ThemeResponse>('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'json' }).subscribe(response => {
+    const themeId = response.id;
+    console.log('Theme saved successfully');
+  }, error => {
+    console.error('Error saving theme:', error);
+  });
+}
 
-  downloadGeneratedTheme(themeId: number, themeName: string) {
-    this.http.get(`http://127.0.0.1:8000/api/theme/${themeId}/download`, { responseType: 'blob' }).subscribe(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${themeName}-theme.vsix`;
-      a.click();
-      window.URL.revokeObjectURL(url);
-    }, error => {
-      console.error('Error downloading theme:', error);
-    });
-  }
+downloadGeneratedTheme() {
+  this.extractColors();
+  const themeData = {
+    name: this.themeDetails.name,
+    publisher: this.themeDetails.publisher,
+    description: this.themeDetails.description,
+    type: this.themeDetails.type,
+    colors: this.colors,
+  };
+
+  this.http.post('http://127.0.0.1:8000/api/theme/download', themeData, { responseType: 'blob' }).subscribe(blob => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${this.themeDetails.name}-theme.vsix`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }, error => {
+    console.error('Error downloading theme:', error);
+  });
+}
 
   downloadTheme() {
     this.extractColors();
@@ -183,5 +224,8 @@ export class EditorComponent implements AfterViewInit {
       lineNumber.textContent = i.toString();
       lineNumbersElement.appendChild(lineNumber);
     }
+  }
+  navigateToLanding(): void {
+    this.router.navigate(['/landing']);
   }
 }
