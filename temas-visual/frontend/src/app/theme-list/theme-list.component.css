@@ -1,5 +1,6 @@
 .theme-list-background {
   background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
+  background-position: center 10%; /* Mueve la imagen de fondo hacia abajo */
   background-size: cover;
   height: 100vh;
   display: flex;
@@ -35,10 +36,54 @@ h2:after {
   border-bottom: 2px solid #8b4513;
 }
 
+.leonardo-theme-test {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.leonardo-theme-test h3 {
+  font-size: 1.8em;
+  color: #8b4513;
+  margin-bottom: 0.5em;
+}
+
+.download-leonardo-button {
+  background-color: #ffcc0046;
+  color: #333;
+  font-weight: bold;
+  border: 2px solid #8b4513;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  font-size: 1.2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-leonardo-button:hover {
+  background-color: #ffdb4d;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.download-leonardo-button:active {
+  transform: translateY(1px);
+}
+
 .no-themes {
   text-align: center;
   font-size: 1.2em;
   color: #555;
+}
+
+button {
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 ul {

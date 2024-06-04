@@ -166,8 +166,9 @@ button:hover {
 }
 
 .vscode-logo img {
-  height: 24px;
+  height: 27px;
   width: auto;
+  margin-right: 10px;
 }
 
 .menubar {

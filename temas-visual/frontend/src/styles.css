@@ -67,4 +67,5 @@
   --input-option-active-foreground: #000000; /* Color negro para el texto de las opciones activas */
   --input-placeholder-foreground: #767676; /* Color gris para el texto de marcador de posición */
   --text-link-foreground: #006ab1; /* Color azul para los enlaces de texto */
+  overflow-y: hidden;
 }

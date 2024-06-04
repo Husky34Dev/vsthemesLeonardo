@@ -1,0 +1,10 @@
+<div class="faq-modal">
+  <div class="modal-content">
+    <h3>Frequently Asked Questions</h3>
+    <div *ngFor="let faq of faqs; let i = index" class="faq-item">
+      <button class="faq-question" (click)="toggleFaq(i)">{{ faq.question }}</button>
+      <div class="faq-answer" *ngIf="faq.open">{{ faq.answer }}</div>
+    </div>
+    <button class="close-button" (click)="onCloseModal()">Close</button>
+  </div>
+</div>

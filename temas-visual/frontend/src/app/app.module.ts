@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+
 // Módulos de Angular Material y Angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,8 @@ import { LandingComponent } from './landing/landing.component';
 import { UserComponent } from './user/user.component';
 import { ThemesComponent } from './themes/themes.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
+import { FaqModalComponent } from './faq-modal/faq-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -36,8 +39,9 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
     LandingComponent,
     UserComponent,
     ThemesComponent,
-    ThemeListComponent
-    // Añade aquí otros componentes que hayas creado
+    ThemeListComponent,
+    FaqModalComponent, 
+    
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,7 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
     MatButtonModule,
     MatIconModule,
     MatSliderModule,
-    ColorPickerModule, // Importa el módulo desde ngx-color-picker
+    ColorPickerModule, 
     HttpClientModule
   ],
   providers: [

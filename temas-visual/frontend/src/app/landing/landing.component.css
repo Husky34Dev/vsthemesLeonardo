@@ -1,67 +1,122 @@
+body {
+  background-color: #f5f5dc; /* Fondo beige para todo el documento */
+  overflow-y: hidden;
+  font-family: 'Garamond', serif;
+  margin: 0;
+  padding: 0;
+}
+
 .landing-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
-    font-family: 'Garamond', serif;
-    padding: 2em;
-    background-color: rgba(245, 245, 220, 0.85); /* Fondo con transparencia */
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  h2 {
-    font-size: 2.5em;
-    margin-bottom: 1.5em;
-    text-shadow: 1px 1px #ccc;
-  }
-  
-  .nav-buttons {
-    display: flex;
-    gap: 1em;
-  }
-  
-  button {
-    padding: 1em 2em;
-    border: none;
-    border-radius: 6px;
-    background-color: #8b4513;
-    color: white;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  button:hover {
-    background-color: #5a3310;
-    transform: translateY(-2px);
-  }
-  
-  button:active {
-    transform: translateY(1px);
-  }
-  .logout-button {
-    padding: 0.7em 2em;
-    border: none;
-    border-radius: 6px;
-    background-color: #8b4513;
-    color: white;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 1em;
-  }
-  
-  .logout-button:hover {
-    background-color: #5a3310;
-    transform: translateY(-2px);
-  }
-  
-  .logout-button:active {
-    transform: translateY(1px);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('/assets/images/leonardo_bg.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center 10%; /* Mueve la imagen de fondo hacia abajo */
+  position: relative;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente oscuro */
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 3em;
+  background-color: rgba(245, 245, 220, 0.85); /* Fondo beige con transparencia */
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 3em;
+  margin-bottom: 1.5em;
+  text-shadow: 2px 2px #333;
+  color: #ffcc00;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+button {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 6px;
+  background-color: #8b4513;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  font-family: 'Cinzel', serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background-color: #5a3310;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.faq-section {
+  text-align: left;
+  margin-top: 2em;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+  border-radius: 8px;
+  padding: 1em 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.faq-section h3 {
+  font-size: 1.8em;
+  color: #8b4513;
+  margin-bottom: 1em;
+  font-family: 'Cinzel', serif;
+}
+
+.faq-item {
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  padding: 0.5em 0;
+  transition: color 0.3s, padding 0.3s;
+  cursor: pointer;
+}
+
+.faq-question:hover {
+  color: #8b4513;
+  padding-left: 0.5em;
+}
+
+.faq-answer {
+  font-size: 1em;
+  color: #555;
+  padding: 0.5em 0;
+}

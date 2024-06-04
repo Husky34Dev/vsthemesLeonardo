@@ -1,9 +1,18 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
 <div class="landing-container">
-  <h2>Welcome to Leonardo Editor</h2>
-  <div class="nav-buttons">
-    <button (click)="navigateTo('user')">Edit Personal Data</button>
-    <button (click)="navigateTo('editor')">Go to Editor</button>
-    <button (click)="navigateTo('themes')">View My Themes</button> <!-- Nuevo botón -->
-    <button (click)="logout()">Logout</button>
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Welcome to Leonardo Editor</h2>
+    <div class="nav-buttons">
+      <button (click)="navigateTo('user')">Edit Personal Data</button>
+      <button (click)="navigateTo('editor')">Go to Editor</button>
+      <button (click)="navigateTo('themes')">View My Themes</button>
+      <button (click)="logout()">Logout</button>
+    </div>
+    <button class="faq-button" (click)="openFaqModal()">FAQs</button>
+    <app-faq-modal *ngIf="showFaqModal" [faqs]="faqs" (closeModal)="closeFaqModal()"></app-faq-modal>
   </div>
 </div>
