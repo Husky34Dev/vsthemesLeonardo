@@ -31,8 +31,10 @@ export class LoginComponent {
           if (errors.password) {
             this.errorMessages.password = errors.password[0];
           }
+        } else if (err.status === 401) {
+          this.errorMessages.general = 'Invalid email or password. Please try again.';
         } else {
-          this.errorMessages.general = 'Invalid email or password';
+          this.errorMessages.general = 'An unexpected error occurred. Please try again later.';
           console.error('Unexpected error', err);
         }
       }

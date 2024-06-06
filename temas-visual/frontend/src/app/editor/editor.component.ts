@@ -2,7 +2,6 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
 interface ColorField {
   label: string;
   value: string;
@@ -31,6 +30,8 @@ export class EditorComponent implements AfterViewInit {
     description: '',
     type: 'dark'
   };
+
+  errorMessages: { themeName?: string; publisherName?: string; description?: string } = {};
 
   editorColors: ColorField[] = [
     { label: '--editor-background', value: '#fbf8f1', description: 'Editor Background - Changes the background color of the editor.' },
@@ -135,66 +136,83 @@ export class EditorComponent implements AfterViewInit {
   }
 
   applyCustomTheme() {
-  this.http.get<any>('assets/leonardo_theme.json').subscribe(theme => {
-    this.applyTheme(theme);
-  });
-}
+    this.http.get<any>('assets/leonardo_theme.json').subscribe(theme => {
+      this.applyTheme(theme);
+    });
+  }
 
-applyTheme(theme: any) {
-  // Apply colors
-  for (const key in theme.colors) {
-    if (theme.colors.hasOwnProperty(key)) {
-      document.documentElement.style.setProperty(`--${key}`, theme.colors[key]);
+  applyTheme(theme: any) {
+    // Apply colors
+    for (const key in theme.colors) {
+      if (theme.colors.hasOwnProperty(key)) {
+        document.documentElement.style.setProperty(`--${key}`, theme.colors[key]);
+      }
+    }
+
+    // Apply token colors
+    theme.tokenColors.forEach((tokenColor: any) => {
+      const cssRule = `.${tokenColor.scope.replace(/\./g, '-')}`;
+      const style = document.createElement('style');
+      style.innerHTML = `${cssRule} { color: ${tokenColor.settings.foreground}; }`;
+      document.head.appendChild(style);
+    });
+  }
+
+  validateAndSaveTheme() {
+    this.errorMessages = {}; // Clear previous errors
+
+    if (!this.themeDetails.name) {
+      this.errorMessages.themeName = 'Theme Name is required';
+    }
+    if (!this.themeDetails.publisher) {
+      this.errorMessages.publisherName = 'Publisher Name is required';
+    }
+    if (!this.themeDetails.description) {
+      this.errorMessages.description = 'Description is required';
+    }
+
+    if (Object.keys(this.errorMessages).length === 0) {
+      this.sendColorsToServer();
     }
   }
 
-  // Apply token colors
-  theme.tokenColors.forEach((tokenColor: any) => {
-    const cssRule = `.${tokenColor.scope.replace(/\./g, '-')}`;
-    const style = document.createElement('style');
-    style.innerHTML = `${cssRule} { color: ${tokenColor.settings.foreground}; }`;
-    document.head.appendChild(style);
-  });
-}
-
-
   sendColorsToServer() {
-  this.extractColors();
-  const themeData = {
-    name: this.themeDetails.name,
-    type: this.themeDetails.type,
-    colors: this.colors,
-  };
+    this.extractColors();
+    const themeData = {
+      name: this.themeDetails.name,
+      type: this.themeDetails.type,
+      colors: this.colors,
+    };
 
-  this.http.post<ThemeResponse>('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'json' }).subscribe(response => {
-    const themeId = response.id;
-    console.log('Theme saved successfully');
-  }, error => {
-    console.error('Error saving theme:', error);
-  });
-}
+    this.http.post<ThemeResponse>('http://127.0.0.1:8000/api/theme', themeData, { responseType: 'json' }).subscribe(response => {
+      const themeId = response.id;
+      console.log('Theme saved successfully');
+    }, error => {
+      console.error('Error saving theme:', error);
+    });
+  }
 
-downloadGeneratedTheme() {
-  this.extractColors();
-  const themeData = {
-    name: this.themeDetails.name,
-    publisher: this.themeDetails.publisher,
-    description: this.themeDetails.description,
-    type: this.themeDetails.type,
-    colors: this.colors,
-  };
+  downloadGeneratedTheme() {
+    this.extractColors();
+    const themeData = {
+      name: this.themeDetails.name,
+      publisher: this.themeDetails.publisher,
+      description: this.themeDetails.description,
+      type: this.themeDetails.type,
+      colors: this.colors,
+    };
 
-  this.http.post('http://127.0.0.1:8000/api/theme/download', themeData, { responseType: 'blob' }).subscribe(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${this.themeDetails.name}-theme.vsix`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }, error => {
-    console.error('Error downloading theme:', error);
-  });
-}
+    this.http.post('http://127.0.0.1:8000/api/theme/download', themeData, { responseType: 'blob' }).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${this.themeDetails.name}-theme.vsix`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading theme:', error);
+    });
+  }
 
   downloadTheme() {
     this.extractColors();
@@ -225,6 +243,7 @@ downloadGeneratedTheme() {
       lineNumbersElement.appendChild(lineNumber);
     }
   }
+
   navigateToLanding(): void {
     this.router.navigate(['/landing']);
   }

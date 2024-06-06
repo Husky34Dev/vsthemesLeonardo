@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://unpkg.com/@vscode/codicons/dist/codicon.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@vscode/codicons/dist/codicon.css"
+/>
 <div class="main-container">
   <div class="color-settings">
     <div class="sidebar-section">
@@ -8,15 +11,37 @@
       </div>
       <div class="theme-details">
         <label for="themeName">Theme Name:</label>
-        <input type="text" id="themeName" [(ngModel)]="themeDetails.name" />
+        <input
+          type="text"
+          id="themeName"
+          [(ngModel)]="themeDetails.name"
+          required
+        />
+        <div *ngIf="errorMessages.themeName" class="error-message">
+          {{ errorMessages.themeName }}
+        </div>
 
         <label for="publisherName">Publisher Name:</label>
-        <input type="text" id="publisherName" [(ngModel)]="themeDetails.publisher" />
+        <input
+          type="text"
+          id="publisherName"
+          [(ngModel)]="themeDetails.publisher"
+          required
+        />
+        <div *ngIf="errorMessages.publisherName" class="error-message">
+          {{ errorMessages.publisherName }}
+        </div>
 
         <label for="description">Description:</label>
-        <input type="text" id="description" [(ngModel)]="themeDetails.description" />
-
-
+        <input
+          type="text"
+          id="description"
+          [(ngModel)]="themeDetails.description"
+          required
+        />
+        <div *ngIf="errorMessages.description" class="error-message">
+          {{ errorMessages.description }}
+        </div>
       </div>
 
       <!-- Editor Colors -->
@@ -25,7 +50,11 @@
           Editor ({{ editorColors.length }})
         </div>
         <div *ngIf="isSectionExpanded('editor')" class="color-fields expanded">
-          <div *ngFor="let color of editorColors" class="color-field" (click)="$event.stopPropagation()">
+          <div
+            *ngFor="let color of editorColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -43,7 +72,11 @@
           Syntax ({{ syntaxColors.length }})
         </div>
         <div *ngIf="isSectionExpanded('syntax')" class="color-fields expanded">
-          <div *ngFor="let color of syntaxColors" class="color-field" (click)="$event.stopPropagation()">
+          <div
+            *ngFor="let color of syntaxColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -61,7 +94,11 @@
           Sidebar ({{ sidebarColors.length }})
         </div>
         <div *ngIf="isSectionExpanded('sidebar')" class="color-fields expanded">
-          <div *ngFor="let color of sidebarColors" class="color-field" (click)="$event.stopPropagation()">
+          <div
+            *ngFor="let color of sidebarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -78,8 +115,15 @@
         <div class="color-section-title" (click)="toggleSection('statusBar')">
           Status Bar ({{ statusBarColors.length }})
         </div>
-        <div *ngIf="isSectionExpanded('statusBar')" class="color-fields expanded">
-          <div *ngFor="let color of statusBarColors" class="color-field" (click)="$event.stopPropagation()">
+        <div
+          *ngIf="isSectionExpanded('statusBar')"
+          class="color-fields expanded"
+        >
+          <div
+            *ngFor="let color of statusBarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -97,7 +141,11 @@
           Top Bar ({{ topBarColors.length }})
         </div>
         <div *ngIf="isSectionExpanded('topBar')" class="color-fields expanded">
-          <div *ngFor="let color of topBarColors" class="color-field" (click)="$event.stopPropagation()">
+          <div
+            *ngFor="let color of topBarColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -115,7 +163,11 @@
           Tabs ({{ tabColors.length }})
         </div>
         <div *ngIf="isSectionExpanded('tabs')" class="color-fields expanded">
-          <div *ngFor="let color of tabColors" class="color-field" (click)="$event.stopPropagation()">
+          <div
+            *ngFor="let color of tabColors"
+            class="color-field"
+            (click)="$event.stopPropagation()"
+          >
             <h4>{{ color.description }}</h4>
             <input
               [(colorPicker)]="color.value"
@@ -126,10 +178,11 @@
           </div>
         </div>
       </div>
-      <button (click)="sendColorsToServer()">Save Theme</button>
+      <button (click)="validateAndSaveTheme()">Save Theme</button>
       <button (click)="downloadGeneratedTheme()">Download Theme</button>
-      <button class="back-button" (click)="navigateToLanding()">Back to Home</button>
-
+      <button class="back-button" (click)="navigateToLanding()">
+        Back to Home
+      </button>
     </div>
   </div>
 
@@ -148,16 +201,24 @@
         <div class="item">Terminal</div>
         <div class="item">Help</div>
       </div>
-      <div class="center-text">main.js - AwesomeProject - Visual Studio Code</div>
+      <div class="center-text">
+        main.js - AwesomeProject - Visual Studio Code
+      </div>
     </div>
 
     <div class="editor-container">
       <div class="sidebar-icons">
         <div class="sidebar-icon"><i class="codicon codicon-files"></i></div>
         <div class="sidebar-icon"><i class="codicon codicon-search"></i></div>
-        <div class="sidebar-icon"><i class="codicon codicon-source-control"></i></div>
-        <div class="sidebar-icon"><i class="codicon codicon-debug-alt-small"></i></div>
-        <div class="sidebar-icon"><i class="codicon codicon-extensions"></i></div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-source-control"></i>
+        </div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-debug-alt-small"></i>
+        </div>
+        <div class="sidebar-icon">
+          <i class="codicon codicon-extensions"></i>
+        </div>
       </div>
 
       <div class="sidebar">
@@ -184,8 +245,12 @@
                       <div class="codicon codicon-chevron-down"></div>
                       assets
                       <ul>
-                        <li><i class="codicon codicon-file-code"></i> styles.css</li>
-                        <li><i class="codicon codicon-file-code"></i> logo.svg</li>
+                        <li>
+                          <i class="codicon codicon-file-code"></i> styles.css
+                        </li>
+                        <li>
+                          <i class="codicon codicon-file-code"></i> logo.svg
+                        </li>
                       </ul>
                     </li>
                     <li class="folder">
@@ -197,8 +262,12 @@
                   </ul>
                 </li>
                 <li><i class="codicon codicon-file-code"></i> .gitignore</li>
-                <li><i class="codicon codicon-file-code"></i> babel.config.js</li>
-                <li><i class="codicon codicon-file-code"></i> package-lock.json</li>
+                <li>
+                  <i class="codicon codicon-file-code"></i> babel.config.js
+                </li>
+                <li>
+                  <i class="codicon codicon-file-code"></i> package-lock.json
+                </li>
                 <li><i class="codicon codicon-file-code"></i> package.json</li>
               </ul>
             </li>

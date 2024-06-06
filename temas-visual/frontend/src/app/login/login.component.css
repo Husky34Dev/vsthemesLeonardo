@@ -1,5 +1,6 @@
 .auth-background {
-  background: url('../../assets/images/leonardo_bg.png') no-repeat center center fixed;
+  background: url("../../assets/images/leonardo_bg.png") no-repeat center center
+    fixed;
   background-size: cover;
   background-position: center 10%; /* Mueve la imagen de fondo hacia abajo */
 
@@ -12,11 +13,16 @@
 .auth-container {
   width: 400px;
   padding: 2em;
-  background-color: rgba(245, 245, 220, 0.95); /* Beige con un poco más de transparencia */
+  background-color: rgba(
+    245,
+    245,
+    220,
+    0.95
+  ); /* Beige con un poco más de transparencia */
   border: 1px solid #d3d3d3;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   color: #333;
 }
 
@@ -30,7 +36,7 @@ h2 {
 }
 
 h2:after {
-  content: '';
+  content: "";
   display: block;
   width: 50%;
   margin: 0.5em auto;
@@ -101,4 +107,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+.error-message {
+  color: #d9534f;
+  font-weight: bold;
+  margin-top: 0.5em;
+  font-size: 0.9em;
 }
