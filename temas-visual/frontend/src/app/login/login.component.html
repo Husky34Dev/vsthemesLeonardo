@@ -1,20 +1,20 @@
 <div class="auth-background">
-  <div class="auth-container">
-    <h2>Login</h2>
+  <div class="auth-container" role="dialog" aria-labelledby="login-title" aria-modal="true">
+    <h2 id="login-title">Login</h2>
     <form (ngSubmit)="login()">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" required>
-        <div *ngIf="errorMessages.email" class="error-message">{{ errorMessages.email }}</div>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required aria-required="true" [attr.aria-describedby]="errorMessages.email ? 'email-error' : null">
+        <div *ngIf="errorMessages.email" class="error-message" id="email-error">{{ errorMessages.email }}</div>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
-        <div *ngIf="errorMessages.password" class="error-message">{{ errorMessages.password }}</div>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required aria-required="true" [attr.aria-describedby]="errorMessages.password ? 'password-error' : null">
+        <div *ngIf="errorMessages.password" class="error-message" id="password-error">{{ errorMessages.password }}</div>
       </div>
-      <div *ngIf="errorMessages.general" class="error-message">{{ errorMessages.general }}</div>
-      <button type="submit">Login</button>
+      <div *ngIf="errorMessages.general" class="error-message" id="general-error">{{ errorMessages.general }}</div>
+      <button type="submit" aria-label="Login">Login</button>
     </form>
-    <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    <p>Don't have an account? <a routerLink="/register" aria-label="Register here">Register here</a></p>
   </div>
 </div>

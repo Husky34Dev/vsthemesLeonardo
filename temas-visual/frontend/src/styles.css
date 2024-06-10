@@ -21,6 +21,7 @@
   --tab-hover-foreground: #3c3b3a; /* Color oscuro para el texto en hover */
   --sidebar-background: #f3f3f3; /* Fondo claro para la barra lateral */
   --sidebar-foreground: #616161; /* Color gris oscuro para el texto de la barra lateral */
+  --sidebar-icon-background:#d6c7a1;
   --sidebar-section-border: #c0b28f; /* Borde claro para las secciones de la barra lateral */
   --side-bar-section-header-foreground: #6f6f6f; /* Color gris oscuro para los encabezados de sección */
   --list-hover-background: #d6c7a1; /* Fondo para los elementos en hover en listas */
@@ -68,4 +69,10 @@
   --input-placeholder-foreground: #767676; /* Color gris para el texto de marcador de posición */
   --text-link-foreground: #006ab1; /* Color azul para los enlaces de texto */
   overflow-y: hidden;
+}
+@font-face {
+  font-family: 'codicon';
+  src: url('assets/fonts/codicon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

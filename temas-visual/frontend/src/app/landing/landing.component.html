@@ -7,12 +7,12 @@
   <div class="content">
     <h2>Welcome to Leonardo Editor</h2>
     <div class="nav-buttons">
-      <button (click)="navigateTo('user')">Edit Personal Data</button>
-      <button (click)="navigateTo('editor')">Go to Editor</button>
-      <button (click)="navigateTo('themes')">View My Themes</button>
-      <button (click)="logout()">Logout</button>
+      <button (click)="navigateTo('user')" aria-label="Edit Personal Data">Edit Personal Data</button>
+      <button (click)="navigateTo('editor')" aria-label="Go to Editor">Go to Editor</button>
+      <button (click)="navigateTo('themes')" aria-label="View My Themes">View My Themes</button>
+      <button (click)="logout()" aria-label="Logout">Logout</button>
     </div>
-    <button class="faq-button" (click)="openFaqModal()">FAQs</button>
+    <button class="faq-button" (click)="openFaqModal()" aria-label="Open FAQs">FAQs</button>
     <app-faq-modal *ngIf="showFaqModal" [faqs]="faqs" (closeModal)="closeFaqModal()"></app-faq-modal>
   </div>
 </div>

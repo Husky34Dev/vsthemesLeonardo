@@ -1,24 +1,24 @@
 <div class="auth-background">
-  <div class="auth-container">
-    <h2>Register</h2>
+  <div class="auth-container" role="dialog" aria-labelledby="register-title" aria-modal="true">
+    <h2 id="register-title">Register</h2>
     <form (ngSubmit)="register()">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" id="name" [(ngModel)]="name" name="name" required>
-        <div *ngIf="errorMessages.name" class="error-message">{{ errorMessages.name }}</div>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required aria-required="true" [attr.aria-describedby]="errorMessages.name ? 'name-error' : null">
+        <div *ngIf="errorMessages.name" class="error-message" id="name-error">{{ errorMessages.name }}</div>
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" required>
-        <div *ngIf="errorMessages.email" class="error-message">{{ errorMessages.email }}</div>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required aria-required="true" [attr.aria-describedby]="errorMessages.email ? 'email-error' : null">
+        <div *ngIf="errorMessages.email" class="error-message" id="email-error">{{ errorMessages.email }}</div>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
-        <div *ngIf="errorMessages.password" class="error-message">{{ errorMessages.password }}</div>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required aria-required="true" [attr.aria-describedby]="errorMessages.password ? 'password-error' : null">
+        <div *ngIf="errorMessages.password" class="error-message" id="password-error">{{ errorMessages.password }}</div>
       </div>
-      <button type="submit">Register</button>
+      <button type="submit" aria-label="Register">Register</button>
     </form>
-    <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    <p>Already have an account? <a routerLink="/login" aria-label="Login here">Login here</a></p>
   </div>
 </div>

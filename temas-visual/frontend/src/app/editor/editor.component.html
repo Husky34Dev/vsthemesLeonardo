@@ -1,346 +1,344 @@
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@vscode/codicons/dist/codicon.css"
-/>
-<div class="main-container">
-  <div class="color-settings">
-    <div class="sidebar-section">
-      <div class="sidebar-section-header">
-        <i class="codicon codicon-color-mode"></i>
-        <h2 class="sidebar-title">Color settings</h2>
-      </div>
-      <div class="theme-details">
-        <label for="themeName">Theme Name:</label>
-        <input
-          type="text"
-          id="themeName"
-          [(ngModel)]="themeDetails.name"
-          required
-        />
-        <div *ngIf="errorMessages.themeName" class="error-message">
-          {{ errorMessages.themeName }}
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <label for="publisherName">Publisher Name:</label>
-        <input
-          type="text"
-          id="publisherName"
-          [(ngModel)]="themeDetails.publisher"
-          required
-        />
-        <div *ngIf="errorMessages.publisherName" class="error-message">
-          {{ errorMessages.publisherName }}
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Settings</title>
+  <link rel="stylesheet" href="https://unpkg.com/@vscode/codicons/dist/codicon.css" />
+</head>
 
-        <label for="description">Description:</label>
-        <input
-          type="text"
-          id="description"
-          [(ngModel)]="themeDetails.description"
-          required
-        />
-        <div *ngIf="errorMessages.description" class="error-message">
-          {{ errorMessages.description }}
+<body>
+  <div class="main-container">
+    <div class="color-settings" role="complementary" aria-labelledby="color-settings-title">
+      <div class="sidebar-section">
+        <div class="sidebar-section-header">
+          <i class="codicon codicon-color-mode" aria-hidden="true"></i>
+          <h2 class="sidebar-title" id="color-settings-title">
+            Color settings
+          </h2>
         </div>
-      </div>
+        
+        <div class="theme-details">
+          <label for="themeName">Theme Name:</label>
+          <input type="text" id="themeName" [(ngModel)]="themeDetails.name" required aria-required="true"
+            [attr.aria-describedby]="'themeName-error'" />
+          <div *ngIf="errorMessages.themeName" class="error-message" id="themeName-error">
+            {{ errorMessages.themeName }}
+          </div>
 
-      <!-- Editor Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('editor')">
-          Editor ({{ editorColors.length }})
-        </div>
-        <div *ngIf="isSectionExpanded('editor')" class="color-fields expanded">
-          <div
-            *ngFor="let color of editorColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
+          <label for="publisherName">Publisher Name:</label>
+          <input type="text" id="publisherName" [(ngModel)]="themeDetails.publisher" required aria-required="true"
+            [attr.aria-describedby]="'publisherName-error'" />
+          <div *ngIf="errorMessages.publisherName" class="error-message" id="publisherName-error">
+            {{ errorMessages.publisherName }}
+          </div>
+
+          <label for="description">Description:</label>
+          <input type="text" id="description" [(ngModel)]="themeDetails.description" required aria-required="true"
+            [attr.aria-describedby]="'description-error'" />
+          <div *ngIf="errorMessages.description" class="error-message" id="description-error">
+            {{ errorMessages.description }}
           </div>
         </div>
-      </div>
 
-      <!-- Syntax Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('syntax')">
-          Syntax ({{ syntaxColors.length }})
-        </div>
-        <div *ngIf="isSectionExpanded('syntax')" class="color-fields expanded">
-          <div
-            *ngFor="let color of syntaxColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
-          </div>
-        </div>
-      </div>
+        <!-- Editor Colors Section -->
 
-      <!-- Sidebar Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('sidebar')">
-          Sidebar ({{ sidebarColors.length }})
-        </div>
-        <div *ngIf="isSectionExpanded('sidebar')" class="color-fields expanded">
-          <div
-            *ngFor="let color of sidebarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
-          </div>
-        </div>
-      </div>
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('editor')"
+            [attr.aria-expanded]="isSectionExpanded('editor')" [attr.aria-controls]="'editor-colors'">
+            Editor ({{ editorColors.length }})
+          </button>
 
-      <!-- Status Bar Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('statusBar')">
-          Status Bar ({{ statusBarColors.length }})
-        </div>
-        <div
-          *ngIf="isSectionExpanded('statusBar')"
-          class="color-fields expanded"
-        >
-          <div
-            *ngFor="let color of statusBarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Top Bar Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('topBar')">
-          Top Bar ({{ topBarColors.length }})
-        </div>
-        <div *ngIf="isSectionExpanded('topBar')" class="color-fields expanded">
-          <div
-            *ngFor="let color of topBarColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Colors -->
-      <div class="color-section">
-        <div class="color-section-title" (click)="toggleSection('tabs')">
-          Tabs ({{ tabColors.length }})
-        </div>
-        <div *ngIf="isSectionExpanded('tabs')" class="color-fields expanded">
-          <div
-            *ngFor="let color of tabColors"
-            class="color-field"
-            (click)="$event.stopPropagation()"
-          >
-            <h4>{{ color.description }}</h4>
-            <input
-              [(colorPicker)]="color.value"
-              [style.background]="color.value"
-              [value]="color.value"
-              (colorPickerChange)="updateTheme()"
-            />
-          </div>
-        </div>
-      </div>
-      <button (click)="validateAndSaveTheme()">Save Theme</button>
-      <button (click)="downloadGeneratedTheme()">Download Theme</button>
-      <button class="back-button" (click)="navigateToLanding()">
-        Back to Home
-      </button>
-    </div>
-  </div>
-
-  <div class="editor-wrapper">
-    <div class="top-bar">
-      <div class="vscode-logo">
-        <img src="assets/vscode.png" alt="VS Code Logo" />
-      </div>
-      <div class="menubar">
-        <div class="item">File</div>
-        <div class="item">Edit</div>
-        <div class="item">Selection</div>
-        <div class="item">View</div>
-        <div class="item">Go</div>
-        <div class="item">Run</div>
-        <div class="item">Terminal</div>
-        <div class="item">Help</div>
-      </div>
-      <div class="center-text">
-        main.js - AwesomeProject - Visual Studio Code
-      </div>
-    </div>
-
-    <div class="editor-container">
-      <div class="sidebar-icons">
-        <div class="sidebar-icon"><i class="codicon codicon-files"></i></div>
-        <div class="sidebar-icon"><i class="codicon codicon-search"></i></div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-source-control"></i>
-        </div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-debug-alt-small"></i>
-        </div>
-        <div class="sidebar-icon">
-          <i class="codicon codicon-extensions"></i>
-        </div>
-      </div>
-
-      <div class="sidebar">
-        <div class="explorer">
-          <div class="explorer-title">Explorer</div>
-          <ul class="file-tree">
-            <li class="folder">
-              <div class="codicon codicon-chevron-down"></div>
-              AWESOMEPROJECT
-              <ul>
-                <li class="folder">
-                  <div class="codicon codicon-chevron-right"></div>
-                  node_modules
-                </li>
-                <li class="folder">
-                  <div class="codicon codicon-chevron-right"></div>
-                  public
-                </li>
-                <li class="folder-expanded">
-                  <div class="codicon codicon-chevron-down"></div>
-                  src
-                  <ul>
-                    <li class="folder">
-                      <div class="codicon codicon-chevron-down"></div>
-                      assets
-                      <ul>
-                        <li>
-                          <i class="codicon codicon-file-code"></i> styles.css
-                        </li>
-                        <li>
-                          <i class="codicon codicon-file-code"></i> logo.svg
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="folder">
-                      <div class="codicon codicon-chevron-right"></div>
-                      components
-                    </li>
-                    <li><i class="codicon codicon-file-code"></i> App.vue</li>
-                    <li><i class="codicon codicon-file-code"></i> main.js</li>
-                  </ul>
-                </li>
-                <li><i class="codicon codicon-file-code"></i> .gitignore</li>
-                <li>
-                  <i class="codicon codicon-file-code"></i> babel.config.js
-                </li>
-                <li>
-                  <i class="codicon codicon-file-code"></i> package-lock.json
-                </li>
-                <li><i class="codicon codicon-file-code"></i> package.json</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="main-area">
-        <div class="editor-tabs">
-          <div class="tab active">main.js</div>
-          <div class="tab inactive">package.json</div>
-          <div class="tab inactive">App.vue</div>
-        </div>
-        <div class="selected-file">
-          <div class="editor-content">
-            <div class="line-numbers" #lineNumbers>
-              <!-- Aquí se generan los números de línea -->
+          <div *ngIf="isSectionExpanded('editor')" class="color-fields expanded" id="editor-colors">
+            <div *ngFor="let color of editorColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
             </div>
-            <pre #codeElement>
-              <code>
-                // <span class="comment">Example borrowed from: https://github.com/PacktPublishing/JavaScript-by-Example/blob/master/Chapter07/CompletedCode/src/services/api/apiCall.js</span>
-                <span class="keyword">const</span> <span class="const">timeoutDuration</span> <span class="operators-special">=</span> <span class="number">12000</span><span class="foreground">;</span>
-                <span class="keyword">const</span> <span class="const">NUMBER</span> <span class="operators-special">=</span> <span class="number">81274509182375409237</span><span class="foreground">;</span>
-                <span class="keyword">export</span> <span class="keyword">function</span> <span class="function-name">apiCall</span><span class="foreground">(</span><span class="variable">route</span><span class="foreground">,</span> <span class="variable">body</span> <span class="opeators-special">=</span> <span class="default-value">&#123;&#125;</span>, <span class="variable">method</span>=<span class="string">'post'</span>) <span class="foreground">&#123;</span>
-                <span class="keyword">const</span> <span class="const">request</span><span class="operators-special"> =</span><span class="keyword">new</span> <span class="const">Promise</span><span class="foreground">((</span><span class="method">resolve</span>, <span class="method">reject</span> <span class="foreground">  )</span> => <span class="foreground"> &#123;</span>
-                <span class="keyword">const</span> <span class="const">headers</span> <span class="operators-special">=</span> <span class="keyword">new</span> <span class="const">Headers</span><span class="foreground">(&#123;</span>
-                <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
-                <span class="foreground">&#125;);</span>
-                <span class="keyword">const</span> <span class="const">requestDetails</span> <span class="operators-special">=</span> <span class="foreground">&#123;</span>
-                <span class="variable">method</span>,
-                <span class="variable">mode</span>: <span class="string">'cors'</span>,
-                <span class="variable">headers</span>,
-                <span class="foreground"> &#125;;</span>
-                <span class="keyword">if</span><span class="foreground">(</span><span class="variable">method</span> <span class="operators-special">!==</span> <span class="string">'GET'</span>) <span class="const">requestDetails</span><span class="propertie">.body</span> = <span class="const">JSON</span><span class="method">.stringify</span><span class="foreground">(</span><span class="variable">body</span><span class="foreground">);</span>
-                <span class="keyword">function</span> <span class="function-name">handleErrors</span><span class="foreground">(</span><span class="variable">response</span><span class="foreground">) &#123;</span>
-                <span class="keyword">if</span>(<span class="variable">response.ok</span>) &#123;
-                <span class="keyword">return</span> <span class="variable">response</span>.<span class="function-name">json</span><span class="foreground">();</span>
-                <span class="foreground">&#125;</span> <span class="keyword">else</span> <span class="foreground">&#123;</span>
-                <span class="keyword">throw</span> <span class="class-name">Error</span><span class="foreground">(</span><span class="variable">response.statusText</span><span class="foreground">);</span>
-                <span class="foreground">&#125;</span>
-                <span class="foreground">&#125;</span>
-                <span class="keyword">const</span> <span class="const">serverURL</span> <span class="operators-special">=</span> <span class="const">process.env.REACT_APP_SERVER_URL</span> <span class="operators-special">||</span> <span class="string">'http://localhost:3000'</span><span class="foreground">;</span>
-                <span class="operators-special">fetch</span><span class="foreground">(</span><span class="template-string"><span class="keyword">&#96;&#36;&#123;</span><span class="const">serverURL</span><span class="keyword">&#125;&#47;&#36;&#123;</span><span class="variable">route</span><span class="keyword">&#125;&#96;</span></span><span class="foreground">,</span> <span class="const">requestDetails</span><span class="foreground">)</span>
-                <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="function-name">handleErrors</span>)
-                <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="variable">data</span><span class="keyword"> =></span> <span class="function-name">resolve</span><span class="foreground">(</span><span class="variable">data</span><span class="foreground">))</span>
-                <span class="foreground">.</span><span class="function-name">catch</span><span class="foreground">(</span><span class="variable">err</span><span class="keyword"> =></span> <span class="function-name">reject</span><span class="foreground">(</span><span class="variable">err</span><span class="foreground">));</span>
-                <span class="foreground">&#125;);</span>
-                <span class="keyword">return</span> <span class="variable">request</span><span class="foreground">;</span>
-                <span class="foreground">&#125;</span>
-              </code>
-            </pre>
           </div>
         </div>
+
+        <!-- Syntax Colors Section -->
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('syntax')"
+            [attr.aria-expanded]="isSectionExpanded('syntax')" [attr.aria-controls]="'syntax-colors'">
+            Syntax ({{ syntaxColors.length }})
+          </button>
+          <div *ngIf="isSectionExpanded('syntax')" class="color-fields expanded" id="syntax-colors">
+            <div *ngFor="let color of syntaxColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Colors Section -->
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('sidebar')"
+            [attr.aria-expanded]="isSectionExpanded('sidebar')" [attr.aria-controls]="'sidebar-colors'">
+            Sidebar ({{ sidebarColors.length }})
+          </button>
+          <div *ngIf="isSectionExpanded('sidebar')" class="color-fields expanded" id="sidebar-colors">
+            <div *ngFor="let color of sidebarColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Bar Colors Section -->
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('statusBar')"
+            [attr.aria-expanded]="isSectionExpanded('statusBar')" [attr.aria-controls]="'statusBar-colors'">
+            Status Bar ({{ statusBarColors.length }})
+          </button>
+          <div *ngIf="isSectionExpanded('statusBar')" class="color-fields expanded" id="statusBar-colors">
+            <div *ngFor="let color of statusBarColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Bar Colors Section -->
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('topBar')"
+            [attr.aria-expanded]="isSectionExpanded('topBar')" [attr.aria-controls]="'topBar-colors'">
+            Top Bar ({{ topBarColors.length }})
+          </button>
+          <div *ngIf="isSectionExpanded('topBar')" class="color-fields expanded" id="topBar-colors">
+            <div *ngFor="let color of topBarColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Colors Section -->
+        <div class="color-section">
+          <button class="color-section-title" (click)="toggleSection('tabs')"
+            [attr.aria-expanded]="isSectionExpanded('tabs')" [attr.aria-controls]="'tabs-colors'">
+            Tabs ({{ tabColors.length }})
+          </button>
+          <div *ngIf="isSectionExpanded('tabs')" class="color-fields expanded" id="tabs-colors">
+            <div *ngFor="let color of tabColors" class="color-field" (click)="$event.stopPropagation()">
+              <h4>{{ color.description }}</h4>
+              <input [(colorPicker)]="color.value" [style.background]="color.value" [value]="color.value"
+                (colorPickerChange)="updateTheme()" [attr.aria-label]="color.description" />
+            </div>
+          </div>
+        </div>
+
+        <button (click)="validateAndSaveTheme()">Save Theme</button>
+        <button (click)="downloadGeneratedTheme()">Download Theme</button>
+        <button class="back-button" (click)="navigateToLanding()">
+          Back to Home
+        </button>
       </div>
-      <div class="status-bar">
-        <div class="remote-item">
-          <i class="codicon codicon-remote"></i>
+    </div>
+
+    <div class="editor-wrapper">
+      <div class="top-bar">
+        <div class="vscode-logo">
+          <img src="assets/vscode.png" alt="VS Code Logo" />
         </div>
-        <div class="status-item git-branch">
-          <i class="codicon codicon-source-control"></i> master*
+        <div class="menubar" role="menubar">
+          <div class="item" role="menuitem">File</div>
+          <div class="item" role="menuitem">Edit</div>
+          <div class="item" role="menuitem">Selection</div>
+          <div class="item" role="menuitem">View</div>
+          <div class="item" role="menuitem">Go</div>
+          <div class="item" role="menuitem">Run</div>
+          <div class="item" role="menuitem">Terminal</div>
+          <div class="item" role="menuitem">Help</div>
         </div>
-        <div class="status-item"><i class="codicon codicon-warning"></i> 0</div>
-        <div class="status-item error">
-          <i class="codicon codicon-error"></i> 1
+        <div class="center-text" aria-live="polite">
+          main.js - AwesomeProject - Visual Studio Code
         </div>
-        <div class="right">
-          <div class="status-item">Ln 9, Col 21</div>
-          <div class="status-item">Spaces: 4</div>
-          <div class="status-item">UTF-8</div>
-          <div class="status-item">LF</div>
-          <div class="status-item">JavaScript</div>
+      </div>
+
+      <div class="editor-container">
+        <div class="sidebar-icons">
+          <div class="sidebar-icon" role="button" tabindex="0" aria-label="Files">
+            <i class="codicon codicon-files"></i>
+          </div>
+          <div class="sidebar-icon" role="button" tabindex="0" aria-label="Search">
+            <i class="codicon codicon-search"></i>
+          </div>
+          <div class="sidebar-icon" role="button" tabindex="0" aria-label="Source Control">
+            <i class="codicon codicon-source-control"></i>
+          </div>
+          <div class="sidebar-icon" role="button" tabindex="0" aria-label="Debug">
+            <i class="codicon codicon-debug-alt-small"></i>
+          </div>
+          <div class="sidebar-icon" role="button" tabindex="0" aria-label="Extensions">
+            <i class="codicon codicon-extensions"></i>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <div class="explorer">
+            <div class="explorer-title">Explorer</div>
+            <ul class="file-tree" role="tree">
+              <li class="folder" role="treeitem" [attr.aria-expanded]="true">
+                <div class="codicon codicon-chevron-down" aria-hidden="true"></div>
+                AWESOMEPROJECT
+                <ul role="group">
+                  <li class="folder" role="treeitem" [attr.aria-expanded]="false">
+                    <div class="codicon codicon-chevron-right" aria-hidden="true"></div>
+                    node_modules
+                  </li>
+                  <li class="folder" role="treeitem" [attr.aria-expanded]="false">
+                    <div class="codicon codicon-chevron-right" aria-hidden="true"></div>
+                    public
+                  </li>
+                  <li class="folder-expanded" role="treeitem" [attr.aria-expanded]="true">
+                    <div class="codicon codicon-chevron-down" aria-hidden="true"></div>
+                    src
+                    <ul role="group">
+                      <li class="folder" role="treeitem" [attr.aria-expanded]="true">
+                        <div class="codicon codicon-chevron-down" aria-hidden="true"></div>
+                        assets
+                        <ul role="group">
+                          <li role="treeitem">
+                            <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                            styles.css
+                          </li>
+                          <li role="treeitem">
+                            <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                            logo.svg
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="folder" role="treeitem" [attr.aria-expanded]="false">
+                        <div class="codicon codicon-chevron-right" aria-hidden="true"></div>
+                        components
+                      </li>
+                      <li role="treeitem">
+                        <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                        App.vue
+                      </li>
+                      <li role="treeitem">
+                        <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                        main.js
+                      </li>
+                    </ul>
+                  </li>
+                  <li role="treeitem">
+                    <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                    .gitignore
+                  </li>
+                  <li role="treeitem">
+                    <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                    babel.config.js
+                  </li>
+                  <li role="treeitem">
+                    <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                    package-lock.json
+                  </li>
+                  <li role="treeitem">
+                    <i class="codicon codicon-file-code" aria-hidden="true"></i>
+                    package.json
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="main-area">
+          <div class="editor-tabs" role="tablist">
+            <div class="tab active" role="tab" aria-selected="true">
+              main.js
+            </div>
+            <div class="tab inactive" role="tab" aria-selected="false">
+              package.json
+            </div>
+            <div class="tab inactive" role="tab" aria-selected="false">
+              App.vue
+            </div>
+          </div>
+          <div class="selected-file">
+            <div class="editor-content" role="document">
+              <div class="line-numbers" #lineNumbers aria-hidden="true">
+                <!-- Aquí se generan los números de línea -->
+              </div>
+              <pre #codeElement>
+                <code>
+                  // <span class="comment">Example borrowed from: https://github.com/PacktPublishing/JavaScript-by-Example/blob/master/apiCall.js</span>
+                  <span class="keyword">const</span> <span class="const">timeoutDuration</span> <span class="operators-special">=</span> <span class="number">12000</span><span class="foreground">;</span>
+                  <span class="keyword">const</span> <span class="const">NUMBER</span> <span class="operators-special">=</span> <span class="number">81274509182375409237</span><span class="foreground">;</span>
+                  <span class="keyword">export</span> <span class="keyword">function</span> <span class="function-name">apiCall</span><span class="foreground">(</span><span class="variable">route</span><span class="foreground">,</span> <span class="variable">body</span> <span class="opeators-special">=</span> <span class="default-value">&#123;&#125;</span>, <span class="variable">method</span>=<span class="string">'post'</span>) <span class="foreground">&#123;</span>
+                  <span class="keyword">const</span> <span class="const">request</span><span class="operators-special">=</span><span class="keyword">new</span> <span class="const">Promise</span><span class="foreground">((</span><span class="method">resolve</span>, <span class="method">reject</span> <span class="foreground">  )</span> => <span class="foreground"> &#123;</span>
+                  <span class="keyword">const</span> <span class="const">headers</span> <span class="operators-special">=</span> <span class="keyword">new</span> <span class="const">Headers</span><span class="foreground">(&#123;</span>
+                  <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+                  <span class="foreground">&#125;);</span>
+                  <span class="keyword">const</span> <span class="const">requestDetails</span> <span class="operators-special">=</span> <span class="foreground">&#123;</span>
+                  <span class="variable">method</span>,
+                  <span class="variable">mode</span>: <span class="string">'cors'</span>,
+                  <span class="variable">headers</span>,
+                  <span class="foreground"> &#125;;</span>
+                  <span class="keyword">if</span><span class="foreground">(</span><span class="variable">method</span> <span class="operators-special">!==</span> <span class="string">'GET'</span>) <span class="const">requestDetails</span><span class="propertie">.body</span> = <span class="const">JSON</span><span class="method">.stringify</span><span class="foreground">(</span><span class="variable">body</span><span class="foreground">);</span>
+                  <span class="keyword">function</span> <span class="function-name">handleErrors</span><span class="foreground">(</span><span class="variable">response</span><span class="foreground">) &#123;</span>
+                  <span class="keyword">if</span>(<span class="variable">response.ok</span>) &#123;
+                  <span class="keyword">return</span> <span class="variable">response</span>.<span class="function-name">json</span><span class="foreground">();</span>
+                  <span class="foreground">&#125;</span> <span class="keyword">else</span> <span class="foreground">&#123;</span>
+                  <span class="keyword">throw</span> <span class="class-name">Error</span><span class="foreground">(</span><span class="variable">response.statusText</span><span class="foreground">);</span>
+                  <span class="foreground">&#125;</span>
+                  <span class="foreground">&#125;</span>
+                  <span class="keyword">const</span> <span class="const">serverURL</span> <span class="operators-special">=</span> <span class="const">process.env.REACT_APP_SERVER_URL</span> <span class="operators-special">||</span> <span class="string">'http://localhost:3000'</span><span class="foreground">;</span>
+                  <span class="operators-special">fetch</span><span class="foreground">(</span><span class="template-string"><span class="keyword">&#96;&#36;&#123;</span><span class="const">serverURL</span><span class="keyword">&#125;&#47;&#36;&#123;</span><span class="variable">route</span><span class="keyword">&#125;&#96;</span></span><span class="foreground">,</span> <span class="const">requestDetails</span><span class="foreground">)</span>
+                  <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="function-name">handleErrors</span>)
+                  <span class="foreground">.</span><span class="function-name">then</span><span class="foreground">(</span><span class="variable">data</span><span class="keyword"> =></span> <span class="function-name">resolve</span><span class="foreground">(</span><span class="variable">data</span><span class="foreground">))</span>
+                  <span class="foreground">.</span><span class="function-name">catch</span><span class="foreground">(</span><span class="variable">err</span><span class="keyword"> =></span> <span class="function-name">reject</span><span class="foreground">(</span><span class="variable">err</span><span class="foreground">));</span>
+                  <span class="foreground">&#125;);</span>
+                  <span class="keyword">return</span> <span class="variable">request</span><span class="foreground">;</span>
+                  <span class="foreground">&#125;</span>
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div class="status-bar" role="contentinfo">
+          <div class="remote-item" [attr.aria-label]="'Remote Status'">
+            <i class="codicon codicon-remote" aria-hidden="true"></i>
+          </div>
+          <div class="status-item git-branch" [attr.aria-label]="'Git Branch'">
+            <i class="codicon codicon-source-control" aria-hidden="true"></i>
+            master*
+          </div>
+          <div class="status-item" [attr.aria-label]="'Warnings'">
+            <i class="codicon codicon-warning" aria-hidden="true"></i> 0
+          </div>
+          <div class="status-item error" [attr.aria-label]="'Errors'">
+            <i class="codicon codicon-error" aria-hidden="true"></i> 1
+          </div>
+          <div class="right">
+            <div class="status-item" [attr.aria-label]="'Cursor Position'">
+              Ln 9, Col 21
+            </div>
+            <div class="status-item" [attr.aria-label]="'Indentation'">
+              Spaces: 4
+            </div>
+            <div class="status-item" [attr.aria-label]="'Encoding'">
+              UTF-8
+            </div>
+            <div class="status-item" [attr.aria-label]="'Line Endings'">
+              LF
+            </div>
+            <div class="status-item" [attr.aria-label]="'Language Mode'">
+              JavaScript
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>
+
+</html>

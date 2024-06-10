@@ -1,9 +1,10 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: var(--editor-background);
-  color: var(--editor-foreground);
+  background-color: #f5f3e6;
+  color: #4b4238;
 }
+
 
 html,
 body {
@@ -19,6 +20,7 @@ body {
   background-size: cover;
   */
 }
+
 .theme-details {
   margin-bottom: 20px;
 }
@@ -26,7 +28,7 @@ body {
 .theme-details label {
   display: block;
   margin-bottom: 5px;
-  color: #ffffff; /* Texto blanco */
+  color: #4b4238;
   font-size: 14px;
 }
 
@@ -34,29 +36,32 @@ body {
   width: calc(100% - 20px);
   padding: 10px;
   margin-bottom: 15px;
-  border: 2px solid #7f8c8d;
+  border: 2px solid #c5b89f;
   border-radius: 5px;
-  background-color: #2f3640; /* Fondo del input */
-  color: #ffffff; /* Color del texto */
+  background-color: #fffaf0;
+  color: #4b4238;
   font-size: 14px;
 }
 
 .theme-details input:focus {
-  border-color: #f39c12; /* Color de borde al enfocar */
+  border-color: #bfa27b;
   outline: none;
-  background-color: #34495e; /* Fondo al enfocar */
+  background-color: #f5e8d9;
 }
+
 .color-settings {
   width: 25%;
-  background-color: #1e272e; /* Fondo más oscuro para el menú */
+  background-color: #fef7e6;
   padding: 20px;
   overflow-y: auto;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Sombra para separación */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #e0d6c0;
+  border-radius: 10px;
 }
 
 .color-settings .sidebar-section {
   margin-bottom: 20px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #e0d6c0;
   padding-bottom: 10px;
 }
 
@@ -65,7 +70,7 @@ body {
   align-items: center;
   margin-bottom: 10px;
   cursor: pointer;
-  color: #ffffff; /* Texto blanco */
+  color: #bfa27b;
 }
 
 .color-settings .sidebar-title {
@@ -78,16 +83,17 @@ body {
   margin: 10px 0;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff; /* Texto blanco */
+  color: #4b4238;
   cursor: pointer;
-  background-color: #2f3640;
+  background-color: #f5e8d9;
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .color-settings .color-section-title:hover {
-  background-color: #3d3d3d;
+  background-color: #d7c4a3;
+  color: #4b4238;
 }
 
 .color-fields {
@@ -100,30 +106,47 @@ body {
   display: block;
 }
 
-.color-settings .color-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.color-settings .color-field h4 {
-  margin: 0;
-  font-size: 14px;  /* Ajuste del tamaño del texto */
-  flex: 1;
-  color: #ffffff; /* Texto blanco */
-}
-
 .color-settings .color-field input {
-  width: 80px;  /* Ajuste del tamaño del input */
-  height: 30px;  /* Ajuste de la altura del input */
-  border: 2px solid #7f8c8d;
+  width: 80px;
+  height: 30px;
+  border: 2px solid #c5b89f;
   cursor: pointer;
   border-radius: 5px;
   margin-left: 10px;
 }
 
+.color-settings .color-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f5e8d9;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.color-settings .color-field:hover {
+  background-color: #e0d6c0;
+}
+
+.color-settings .color-field h4 {
+  margin: 0;
+  font-size: 14px;
+  flex: 1;
+  color: #4b4238;
+}
+
+.color-settings .color-field h4 {
+  margin: 0;
+  font-size: 14px;
+  /* Ajuste del tamaño del texto */
+  flex: 1;
+  color: #000000;
+  /* Texto blanco */
+}
+
 button {
-  background-color: #f39c12;
+  background-color: #bfa27b;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -137,7 +160,7 @@ button {
 }
 
 button:hover {
-  background-color: #e67e22;
+  background-color: #a38461;
   transform: translateY(-2px);
 }
 
@@ -148,7 +171,6 @@ button:hover {
   font-style: italic;
 }
 
-
 .editor-wrapper {
   display: flex;
   flex-direction: column;
@@ -157,7 +179,8 @@ button:hover {
   border-left: 1px solid #333;
   margin: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  /* Sombra para darle profundidad */
   overflow: hidden;
 }
 
@@ -205,7 +228,8 @@ button:hover {
 .editor-container {
   display: flex;
   flex: 1;
-  height: calc(100% - 60px); /* Adjusted height to leave space for the status bar */
+  height: calc(100% - 60px);
+  /* Adjusted height to leave space for the status bar */
   overflow: hidden;
   background-color: var(--editor-background);
 }
@@ -220,7 +244,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--sidebar-background); 
+  background-color: var(--sidebar-icon-background);
   padding-top: 20px;
   width: 60px;
   height: 100%;
@@ -236,7 +260,8 @@ button:hover {
 }
 
 .sidebar-icon:hover {
-  color: #f39c12; /* Cambiar color al pasar el cursor */
+  color: #f39c12;
+  /* Cambiar color al pasar el cursor */
 }
 
 .sidebar {
@@ -300,7 +325,7 @@ button:hover {
   color: var(--list-hover-foreground);
 }
 
-.file-tree .folder > .codicon {
+.file-tree .folder>.codicon {
   margin-right: 5px;
   cursor: pointer;
 }

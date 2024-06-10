@@ -1,26 +1,25 @@
 <div class="auth-background">
-    <div class="auth-container">
-      <h2>User Profile</h2>
-      <form (ngSubmit)="updateUser()">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" [(ngModel)]="user.name" name="name" required>
-          <div *ngIf="errorMessages.name" class="error-message">{{ errorMessages.name }}</div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
-          <div *ngIf="errorMessages.email" class="error-message">{{ errorMessages.email }}</div>
-        </div>
-        <div class="form-group">
-          <label for="password">Password (leave blank to keep current):</label>
-          <input type="password" id="password" [(ngModel)]="user.password" name="password">
-          <div *ngIf="errorMessages.password" class="error-message">{{ errorMessages.password }}</div>
-        </div>
-        <button type="submit">Update</button>
-        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-      </form>
-      <button (click)="goBack()">Back to Home</button>
-    </div>
+  <div class="auth-container" role="dialog" aria-labelledby="user-profile-title" aria-modal="true">
+    <h2 id="user-profile-title">User Profile</h2>
+    <form (ngSubmit)="updateUser()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="user.name" name="name" required aria-required="true" [attr.aria-describedby]="errorMessages.name ? 'name-error' : null">
+        <div *ngIf="errorMessages.name" class="error-message" id="name-error">{{ errorMessages.name }}</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required aria-required="true" [attr.aria-describedby]="errorMessages.email ? 'email-error' : null">
+        <div *ngIf="errorMessages.email" class="error-message" id="email-error">{{ errorMessages.email }}</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password (leave blank to keep current):</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" [attr.aria-describedby]="errorMessages.password ? 'password-error' : null">
+        <div *ngIf="errorMessages.password" class="error-message" id="password-error">{{ errorMessages.password }}</div>
+      </div>
+      <button type="submit" aria-label="Update Profile">Update</button>
+      <div *ngIf="successMessage" class="success-message" aria-live="polite">{{ successMessage }}</div>
+    </form>
+    <button (click)="goBack()" aria-label="Back to Home">Back to Home</button>
   </div>
-  
+</div>

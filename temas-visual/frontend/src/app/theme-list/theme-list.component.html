@@ -1,19 +1,19 @@
 <div class="theme-list-background">
-  <div class="theme-list-container">
-    <h2>My Themes</h2>
+  <div class="theme-list-container" role="region" aria-labelledby="my-themes-title">
+    <h2 id="my-themes-title">My Themes</h2>
 
-    <div class="leonardo-theme-test">
-      <h3>Test our Leonardo theme!</h3>
-      <button class="download-leonardo-button" (click)="downloadLeonardoTheme()">Download</button>
+    <div class="leonardo-theme-test" role="region" aria-labelledby="leonardo-theme-test-title">
+      <h3 id="leonardo-theme-test-title">Test our Leonardo theme!</h3>
+      <button class="download-leonardo-button" (click)="downloadLeonardoTheme()" aria-label="Download Leonardo theme">Download</button>
     </div>
 
-    <div *ngIf="themes.length === 0" class="no-themes">No themes found.</div>
+    <div *ngIf="themes.length === 0" class="no-themes" aria-live="polite">No themes found.</div>
     <ul *ngIf="themes.length > 0">
       <li *ngFor="let theme of themes">
         <span>{{ theme.name }}</span>
-        <button (click)="downloadTheme(theme.id, theme.name)">Download</button>
+        <button (click)="downloadTheme(theme.id, theme.name)" [attr.aria-label]="'Download theme ' + theme.name">Download</button>
       </li>
     </ul>
-    <button class="back-button" (click)="navigateToLanding()">Back</button>
+    <button class="back-button" (click)="navigateToLanding()" aria-label="Back to Home">Back</button>
   </div>
 </div>

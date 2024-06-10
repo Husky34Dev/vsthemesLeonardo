@@ -70,6 +70,8 @@ export class EditorComponent implements AfterViewInit {
     { label: '--side-bar-section-border', value: '#c0b28f', description: 'Sidebar Section Border - Changes the border color of sections in the sidebar.' },
     { label: '--list-hover-background', value: '#d6c7a1', description: 'List Hover Background - Changes the background color when hovering over items in lists.' },
     { label: '--list-hover-foreground', value: '#3c3b3a', description: 'List Hover Foreground - Changes the text color when hovering over items in lists.' },
+    { label: '--sidebar-icon-background',value:'#d6c7a1',description: 'Sidebar icons Section Background - Changes the background color of icon section headers in the sidebar'},
+
   ];
 
   statusBarColors: ColorField[] = [
